@@ -1,7 +1,10 @@
 import * as vscode from "vscode"
-import Msgs from "./msgs"
+import {msgs} from "./constants"
 
 export const toast = vscode.window.showInformationMessage
 export const errorToast = vscode.window.showErrorMessage
 export const debugToast = (x: string) =>
-  vscode.window.showInformationMessage(Msgs.debug_1(x))
+  vscode.window.showInformationMessage(msgs.debug_1(x))
+
+
+export const registerCommand = vscode.commands.registerCommand

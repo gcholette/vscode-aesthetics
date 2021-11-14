@@ -1,13 +1,12 @@
 import injectFile from "./file-man"
-import * as vscode from "vscode"
-import Msgs from "./msgs"
+import {msgs} from "./constants"
 import { toast } from "./util"
 
 export function enableAll() {
   injectFile()
-  toast(Msgs.enable_all)
+  toast(msgs.enable_all)
 }
 
 export function enableGlow() {
-  toast(Msgs.enable_glow)
+  toast(msgs.enable_glow)
 }
