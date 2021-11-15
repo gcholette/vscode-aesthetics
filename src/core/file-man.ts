@@ -1,4 +1,5 @@
-import { debugToast, formatPath, isWindows } from "./util"
+import { msgs } from "./constants"
+import { formatPath, toast } from "./util"
 const path = require("path")
 const fs = require("fs")
 
@@ -41,12 +42,15 @@ export default function injectFile() {
 
   // change the workbench html to contain <script>
   const workbenchHtmlContents = fs.readFileSync(workbenchHtml, "utf-8")
-  const newFileContents = addOrReplaceTag(
-    workbenchHtmlContents,
-    generateHtmlTag()
-  )
+  const tag = generateHtmlTag()
+  const newFileContents = addOrReplaceTag(workbenchHtmlContents, tag)
   fs.writeFileSync(workbenchHtml, newFileContents, "utf-8")
 
-  debugToast("File sucessfully injected.")
-  debugToast(localInjectablePath)
+  const postWorkbenchContents = fs.readFileSync(workbenchHtml, "utf-8")
+  // check if tag was successfully applied to html
+  if (postWorkbenchContents.includes(tag)) {
+    toast(msgs.success_inject)
+  } else {
+    toast(msgs.error_inject)
+  }
 }

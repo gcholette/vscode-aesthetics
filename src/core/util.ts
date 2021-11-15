@@ -4,6 +4,7 @@ import {msgs} from "./constants"
 export const isWindows = /^win/.test(process.platform)
 
 export const registerCommand = vscode.commands.registerCommand
+export const executeCommand = vscode.commands.executeCommand
 export const toast = vscode.window.showInformationMessage
 export const errorToast = vscode.window.showErrorMessage
 export const debugToast = (x: string) =>
