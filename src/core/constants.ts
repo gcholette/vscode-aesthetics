@@ -6,6 +6,3 @@ export const msgs = {
 
   debug: (x: string) => `${app_prefix} [DEBUG] ${x}`,
 }
-
-
-
