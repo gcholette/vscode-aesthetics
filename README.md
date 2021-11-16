@@ -4,6 +4,8 @@ VS Code Aesthetics is an extension that allows for injecting CSS files inside th
 
 I currently use the extension with the 2077 theme https://marketplace.visualstudio.com/items?itemName=Endormi.2077-theme
 
+![demo_1](https://user-images.githubusercontent.com/8711020/141928021-b663672f-49f5-478b-83fb-3a1438b5c2c2.PNG)
+
 ## How to use
 
 1. Download the .vsix extension from the releases page https://github.com/gcholette/vscode-aesthetics/releases and install it manually. (https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix)
