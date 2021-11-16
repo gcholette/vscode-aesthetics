@@ -1,8 +1,6 @@
 #  VS Code Aesthetics :sparkles:
 
-## What is it ?
-
-It's an extension for VS Code that allows for injecting CSS files inside the workbench. This allows for deeper customisation than what normal themes permit, like gradients, glow effects and css animations on anything in the UI.
+VS Code Aesthetics is an extension that allows for injecting CSS files inside the workbench. This allows for deeper customisation than what normal themes permit, like gradients, glow effects and css animations on anything in the UI.
 
 ## How to use
 
