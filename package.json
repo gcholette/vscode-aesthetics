@@ -3,6 +3,10 @@
 	"displayName": "vscode-aesthetics",
 	"description": "",
 	"version": "0.1.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gcholette/vscode-aesthetics.git"
+	},
 	"engines": {
 		"vscode": "^1.62.0"
 	},
