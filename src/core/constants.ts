@@ -1,3 +1,6 @@
+import path = require("path")
+import { formatPath } from "./util"
+
 const app_prefix = "[VS Code Aesthetics]"
 
 export const msgs = {
@@ -8,3 +11,18 @@ export const msgs = {
 
   debug: (x: string) => `${app_prefix} [DEBUG] ${x}`,
 }
+
+export const injectedTagName = "vscode-aesthetics-1"
+export const injectedFileName = "vscode-aesthetics.js"
+
+export const localInjectablePath = __dirname + formatPath("/injectable")
+export const themePath = localInjectablePath + formatPath("/themes")
+export const injectorPath = localInjectablePath + formatPath("/injectors")
+export const baseThemePath = themePath + formatPath("/base-theme.js")
+export const retroGlowTheme = themePath + formatPath("/retro-glow-theme.js")
+export const cssInjectorPath = injectorPath + formatPath("/css-injector.js")
+export const appDirectory = path.dirname(require?.main?.filename || '')
+export const workbenchPath =
+  appDirectory + formatPath("/vs/code/electron-browser/workbench/")
+export const workbenchHtml = workbenchPath + "workbench.html"
+export const scriptPath = workbenchPath + injectedFileName

@@ -1,9 +1,9 @@
 import injectFile from "./file-man"
-import {msgs} from "./constants"
+import { cssInjectorPath, msgs, retroGlowTheme } from "./constants"
 import { toast } from "./util"
 
 export function enableAll() {
-  injectFile()
+  injectFile(cssInjectorPath, retroGlowTheme)
   toast(msgs.enable_all)
 }
 
