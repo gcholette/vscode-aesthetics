@@ -2,7 +2,7 @@
 	"name": "vscode-aesthetics",
 	"displayName": "vscode-aesthetics",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.62.0"
 	},
@@ -51,7 +51,5 @@
 	},
 	"prettier": {
 		"semi": false
-	},
-	"dependencies": {
 	}
 }
