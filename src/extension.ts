@@ -1,11 +1,12 @@
 import * as vscode from "vscode"
-import { enableAll, enableGlow } from "./core/commands"
+import { applyBase, applyCustom, uninstallTheme } from "./core/commands"
 import { registerCommand } from "./core/util"
 
 export function activate(context: vscode.ExtensionContext) {
   const registeredCommands = [
-    registerCommand("vscode-aesthetics.enableAll", enableAll),
-    registerCommand("vscode-aesthetics.enableGlow", enableGlow),
+    registerCommand("vscode-aesthetics.applyBase", applyBase),
+    registerCommand("vscode-aesthetics.applyCustom", applyCustom),
+    registerCommand("vscode-aesthetics.uninstall", uninstallTheme)
   ]
 
   registeredCommands.forEach((cmd) => context.subscriptions.push(cmd))

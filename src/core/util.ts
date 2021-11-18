@@ -9,6 +9,9 @@ export const toast = vscode.window.showInformationMessage
 export const errorToast = vscode.window.showErrorMessage
 export const debugToast = (x: string) =>
   vscode.window.showInformationMessage(msgs.debug(x))
+export const reloadWindow = () => executeCommand("workbench.action.reloadWindow")
+
+export const getConfig = () => vscode.workspace.getConfiguration("vscodeAesthetics") || {}
 
 export function formatPath (path: string): string {
   if (isWindows) {

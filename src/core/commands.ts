@@ -1,12 +1,31 @@
-import injectFile from "./file-man"
-import { cssInjectorPath, msgs, retroGlowTheme } from "./constants"
-import { toast } from "./util"
+import injectFile, { removeHtmlTag } from "./file-man"
+import { baseThemePath, msgs } from "./constants"
+import { errorToast, formatPath, reloadWindow, toast } from "./util"
+import config from "./config"
 
-export function enableAll() {
-  injectFile(cssInjectorPath, retroGlowTheme)
-  toast(msgs.enable_all)
+export function applyBase() {
+  injectFile(baseThemePath)
+    .then(() => {
+      toast(msgs.success_inject).then(() => {
+        reloadWindow()
+      })
+    })
+    .catch((e) => errorToast("Error: Application did not succeed"))
 }
 
-export function enableGlow() {
-  toast(msgs.enable_glow)
+export function applyCustom() {
+  const customPath = formatPath(config.customPath())
+  if (customPath.length > 0) {
+    injectFile(customPath)
+    toast(msgs.enable_base)
+  } else {
+    errorToast("No path provided in settings.")
+  }
+}
+
+export function uninstallTheme() {
+  removeHtmlTag()
+  toast(msgs.success_uninstall).then(() => {
+    reloadWindow()
+  })
 }

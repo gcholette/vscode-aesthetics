@@ -7,7 +7,8 @@ import {
   scriptPath,
   workbenchHtml,
 } from "./constants"
-import { toast } from "./util"
+import { generateTheme } from "./theme-man"
+import { reloadWindow, toast } from "./util"
 const fs = require("fs")
 
 type HtmlTag = string
@@ -27,11 +28,12 @@ function generateHtmlTag(
   return `<!--${name}--><script src="${filename}"></script><!--${name}-->`
 }
 
-function buildFile(injectorFilePath: string, themeFilePath: string): void {
+function buildFile(cssFilePath: string): void {
   // upload file mentionned in tag inside workbench directory
-  const cssInjectorFileContents = fs.readFileSync(injectorFilePath, "utf-8")
-  const themeFileContents = fs.readFileSync(themeFilePath, "utf-8")
-  const consolidatedFileContents = `${themeFileContents}${cssInjectorFileContents}`
+  const cssInjectorFileContents = fs.readFileSync(cssInjectorPath, "utf-8")
+  const themeFileContents = fs.readFileSync(cssFilePath, "utf-8")
+  const theme = generateTheme(themeFileContents)
+  const consolidatedFileContents = `const customCssStr = \`${theme}\`;\n\n${cssInjectorFileContents}`
   fs.writeFileSync(scriptPath, consolidatedFileContents, "utf-8")
 }
 
@@ -42,20 +44,23 @@ function insertHtmlTag(tag: HtmlTag): void {
   fs.writeFileSync(workbenchHtml, newFileContents, "utf-8")
 }
 
-export default function injectFile(
-  injectorFilePath: string = cssInjectorPath,
-  themeFilePath: string = baseThemePath
-) {
+export function removeHtmlTag(): void {
+  const workbenchHtmlContents = fs.readFileSync(workbenchHtml, "utf-8")
+  const newFileContents = workbenchHtmlContents.replace(/<!--.*vscode-aesthetics-1-->/, '')
+  fs.writeFileSync(workbenchHtml, newFileContents, "utf-8")
+}
+
+export default function injectFile(cssFilePath: string = baseThemePath): Promise<any> {
   const tag = generateHtmlTag()
 
-  buildFile(injectorFilePath, themeFilePath)
+  buildFile(cssFilePath)
   insertHtmlTag(tag)
 
   // check if tag was successfully applied to html
   const postWorkbenchContents = fs.readFileSync(workbenchHtml, "utf-8")
   if (postWorkbenchContents.includes(tag)) {
-    toast(msgs.success_inject)
+    return Promise.resolve()
   } else {
-    toast(msgs.error_inject)
+    return Promise.reject()
   }
 }
