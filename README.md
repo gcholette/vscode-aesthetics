@@ -24,10 +24,29 @@ VS Code Aesthetics is an extension that allows for deeper customisation than wha
 
 ## How to use
 
-1. Download the .vsix extension from [the releases page](https://github.com/gcholette/vscode-aesthetics/releases) and install it manually. ([Official documentation on how to install manually](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix))
-2. In the command palette, the command "VS Code Aesthetics: Enable All" should be available
+### Installation
+Download the .vsix extension from [the releases page](https://github.com/gcholette/vscode-aesthetics/releases) and install it manually. 
 
-Please note that this project is still in early development.
+([Official documentation on how to install manually](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix))
+
+### Usage
+#### Apply base styles
+In the command palette, the command "VS Code Aesthetics: Apply base theme" will apply the default styles.
+
+#### Enable glow effect
+To disable/enable the glow effect, go in settings (Ctrl + ,), then search for "Vscode Aesthetics: Enable Glow". After changing the value, you will need to re-run the "Apply theme" command.
+
+#### Use custom CSS file
+To use a custom CSS file, go in settings (Ctrl + ,), then search for "Vscode Aesthetics: Custom Path" then enter the absolute path for the css file you wish to provide. Then, run the command "VS Code Aesthetics: Apply custom css theme".
+
+#### Uninstall a theme
+Uninstall with the command "VS Code Aesthetics: Uninstall Theme"
+
+
+
+## Note
+
+This project is still in early development.
 
 Once installed, VS Code will say that it's installation is corrupt.
 
