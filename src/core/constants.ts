@@ -6,6 +6,7 @@ const app_prefix = "[VS Code Aesthetics]"
 export const msgs = {
   enable_base:  `${app_prefix} Base Theme Applied.`,
   success_inject: `${app_prefix} Success, window will reload to take effect.`,
+  success_uninstall: `${app_prefix} Theme uninstalled, window will reload to take effect.`,
   error_inject: `${app_prefix} An error occured, could not add files.`,
 
   debug: (x: string) => `${app_prefix} [DEBUG] ${x}`,

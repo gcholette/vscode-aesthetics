@@ -44,6 +44,12 @@ function insertHtmlTag(tag: HtmlTag): void {
   fs.writeFileSync(workbenchHtml, newFileContents, "utf-8")
 }
 
+export function removeHtmlTag(): void {
+  const workbenchHtmlContents = fs.readFileSync(workbenchHtml, "utf-8")
+  const newFileContents = workbenchHtmlContents.replace(/<!--.*vscode-aesthetics-1-->/, '')
+  fs.writeFileSync(workbenchHtml, newFileContents, "utf-8")
+}
+
 export default function injectFile(cssFilePath: string = baseThemePath): Promise<any> {
   const tag = generateHtmlTag()
 

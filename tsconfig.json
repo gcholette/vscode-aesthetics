@@ -19,8 +19,5 @@
   ],
   "include": [
     "./src/**/*"
-  ],
-  "hooks": [
-    "copy-files"
   ]
 }

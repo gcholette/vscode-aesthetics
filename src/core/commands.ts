@@ -1,4 +1,4 @@
-import injectFile from "./file-man"
+import injectFile, { removeHtmlTag } from "./file-man"
 import { baseThemePath, msgs } from "./constants"
 import { errorToast, formatPath, reloadWindow, toast } from "./util"
 import config from "./config"
@@ -10,7 +10,7 @@ export function applyBase() {
         reloadWindow()
       })
     })
-    .catch((e) => errorToast('Error: Application did not succeed'))
+    .catch((e) => errorToast("Error: Application did not succeed"))
 }
 
 export function applyCustom() {
@@ -21,4 +21,11 @@ export function applyCustom() {
   } else {
     errorToast("No path provided in settings.")
   }
+}
+
+export function uninstallTheme() {
+  removeHtmlTag()
+  toast(msgs.success_uninstall).then(() => {
+    reloadWindow()
+  })
 }
