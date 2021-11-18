@@ -1,14 +1,16 @@
 import injectFile from "./file-man"
-import {
-  baseThemePath,
-  msgs
-} from "./constants"
-import { errorToast, formatPath, toast } from "./util"
+import { baseThemePath, msgs } from "./constants"
+import { errorToast, formatPath, reloadWindow, toast } from "./util"
 import config from "./config"
 
 export function applyBase() {
   injectFile(baseThemePath)
-  toast(msgs.enable_base)
+    .then(() => {
+      toast(msgs.success_inject).then(() => {
+        reloadWindow()
+      })
+    })
+    .catch((e) => errorToast('Error: Application did not succeed'))
 }
 
 export function applyCustom() {

@@ -8,7 +8,7 @@ import {
   workbenchHtml,
 } from "./constants"
 import { generateTheme } from "./theme-man"
-import { toast } from "./util"
+import { reloadWindow, toast } from "./util"
 const fs = require("fs")
 
 type HtmlTag = string
@@ -44,9 +44,7 @@ function insertHtmlTag(tag: HtmlTag): void {
   fs.writeFileSync(workbenchHtml, newFileContents, "utf-8")
 }
 
-export default function injectFile(
-  cssFilePath: string = baseThemePath
-) {
+export default function injectFile(cssFilePath: string = baseThemePath): Promise<any> {
   const tag = generateHtmlTag()
 
   buildFile(cssFilePath)
@@ -55,8 +53,8 @@ export default function injectFile(
   // check if tag was successfully applied to html
   const postWorkbenchContents = fs.readFileSync(workbenchHtml, "utf-8")
   if (postWorkbenchContents.includes(tag)) {
-    toast(msgs.success_inject)
+    return Promise.resolve()
   } else {
-    toast(msgs.error_inject)
+    return Promise.reject()
   }
 }
