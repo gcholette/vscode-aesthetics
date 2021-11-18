@@ -29,7 +29,7 @@
 .monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab.sizing-fit.active::after {
     background: linear-gradient(90deg, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan, orange, magenta, cyan);
     background-size: 2000% 2000%;
-    animation: breathingbg infinite 75s steps(1220);
+    animation: breathingBackground infinite 75s steps(1220);
     opacity: 1;
     content: '';
     z-index: 10;
