@@ -24,11 +24,11 @@ VS Code Aesthetics is an extension that allows for deeper customisation than wha
 
 ## How to use
 
-1. Download the .vsix extension from the releases page https://github.com/gcholette/vscode-aesthetics/releases and install it manually. (https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix)
+1. Download the .vsix extension from [the releases page](https://github.com/gcholette/vscode-aesthetics/releases) and install it manually. ([Official documentation on how to install manually](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix))
 2. In the command palette, the command "VS Code Aesthetics: Enable All" should be available
 
 Please note that this project is still in early development.
 
 Once installed, VS Code will say that it's installation is corrupt.
 
-I currently use the extension with the 2077 theme https://marketplace.visualstudio.com/items?itemName=Endormi.2077-theme
+I currently use the extension with [the 2077 theme](https://marketplace.visualstudio.com/items?itemName=Endormi.2077-theme)
