@@ -10,6 +10,8 @@ export const errorToast = vscode.window.showErrorMessage
 export const debugToast = (x: string) =>
   vscode.window.showInformationMessage(msgs.debug(x))
 
+export const getConfig = () => vscode.workspace.getConfiguration("vscodeAesthetics") || {}
+
 export function formatPath (path: string): string {
   if (isWindows) {
     return path.replace('/', '\\')

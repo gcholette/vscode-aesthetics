@@ -1,12 +1,22 @@
 import injectFile from "./file-man"
-import { cssInjectorPath, msgs, retroGlowTheme } from "./constants"
-import { toast } from "./util"
+import {
+  baseThemePath,
+  msgs
+} from "./constants"
+import { errorToast, formatPath, toast } from "./util"
+import config from "./config"
 
-export function enableAll() {
-  injectFile(cssInjectorPath, retroGlowTheme)
-  toast(msgs.enable_all)
+export function applyBase() {
+  injectFile(baseThemePath)
+  toast(msgs.enable_base)
 }
 
-export function enableGlow() {
-  toast(msgs.enable_glow)
+export function applyCustom() {
+  const customPath = formatPath(config.customPath())
+  if (customPath.length > 0) {
+    injectFile(customPath)
+    toast(msgs.enable_base)
+  } else {
+    errorToast("No path provided in settings.")
+  }
 }
