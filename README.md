@@ -13,7 +13,7 @@ An extension to customize beyond themes.
   <img src="https://user-images.githubusercontent.com/8711020/142301382-70b9893c-e4e8-444f-ae7d-856adc06e05d.png" />
 </p>
 
-![demo_1](https://user-images.githubusercontent.com/8711020/141928258-49e0968d-7b5b-4b27-bac4-b86559e954aa.PNG)
+![demo_1](https://user-images.githubusercontent.com/8711020/142354891-43c27b11-a106-4f22-931b-562fab20a60f.png)
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/8711020/142301382-70b9893c-e4e8-444f-ae7d-856adc06e05d.png" />
