@@ -1,31 +1,40 @@
 import injectFile, { removeHtmlTag } from "./file-man"
 import { baseThemePath, msgs } from "./constants"
-import { errorToast, formatPath, reloadWindow, toast } from "./util"
+import { errorToast, formatPath, pipe, reloadWindow, toast } from "./util"
 import config from "./config"
 
-export function applyBase() {
-  injectFile(baseThemePath)
+function injectWithEffect(path: string) {
+  return injectFile(path)
     .then(() => {
-      toast(msgs.success_inject).then(() => {
-        reloadWindow()
-      })
+      reloadWindow()
     })
-    .catch((e) => errorToast("Error: Application did not succeed"))
+    .catch((e) => errorToast(e))
+}
+
+export function applyBase() {
+  return injectWithEffect(baseThemePath)
 }
 
 export function applyCustom() {
   const customPath = formatPath(config.customPath())
+  const fileIsDefined = customPath.length > 0
+
+  if (fileIsDefined && !customPath.includes(".css")) {
+    return errorToast(
+      'No file of type ".css" was provided. VS Code Aesthetics only supports pure CSS files.'
+    )
+  }
+
   if (customPath.length > 0) {
-    injectFile(customPath)
-    toast(msgs.enable_base)
+    return injectWithEffect(customPath)
   } else {
-    errorToast("No path provided in settings.")
+    return errorToast("No path provided in settings.")
   }
 }
 
 export function uninstallTheme() {
   removeHtmlTag()
-  toast(msgs.success_uninstall).then(() => {
+  return toast(msgs.success_uninstall).then(() => {
     reloadWindow()
   })
 }

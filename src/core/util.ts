@@ -1,6 +1,12 @@
 import * as vscode from "vscode"
 import {msgs} from "./constants"
 
+// usage: pipe(firstFn, secondFn, ...)(argument)
+export const pipe =
+    (...fns: any[]) =>
+        (input: any) =>
+            fns.reduce((acc, f) => f(acc), input)
+
 export const isWindows = /^win/.test(process.platform)
 
 export const registerCommand = vscode.commands.registerCommand
