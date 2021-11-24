@@ -46,7 +46,9 @@ Uninstall with the command "VS Code Aesthetics: Uninstall Theme"
 
 ## Note
 
-This project is still in early development.
+This project is still in early development. 
+
+Only works with Windows for now.
 
 Once installed, VS Code will say that it's installation is corrupt.
 
