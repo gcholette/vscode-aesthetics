@@ -2,7 +2,7 @@
 	"name": "vscode-aesthetics",
 	"displayName": "vscode-aesthetics",
 	"description": "Customise beyond themes.",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"icon": "logo.png",
 	"repository": {
 		"type": "git",
