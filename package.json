@@ -1,18 +1,20 @@
 {
 	"name": "vscode-aesthetics",
-	"displayName": "vscode-aesthetics",
+	"displayName": "VS Code Aesthetics",
 	"description": "Customise beyond themes.",
-	"version": "0.2.3",
+	"version": "0.2.4",
+	"author": "Gabriel Cholette-Rioux",
+	"publisher": "gcholette",
 	"icon": "logo.png",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/gcholette/vscode-aesthetics.git"
+		"url": "https://github.com/gcholette/vscode-aesthetics"
 	},
 	"engines": {
 		"vscode": "^1.62.0"
 	},
 	"categories": [
-		"Other"
+		"Themes"
 	],
 	"activationEvents": [
 		"onCommand:vscode-aesthetics.applyBase",
@@ -61,6 +63,9 @@
 		"package": "vsce package",
 		"copy-files": "copyfiles -u 1 src/**/*.css out/"
 	},
+	"dependencies": {
+		"css": "^3.0.0"
+	},
 	"devDependencies": {
 		"@types/glob": "^7.1.4",
 		"@types/mocha": "^9.0.0",
@@ -70,14 +75,14 @@
 		"@typescript-eslint/parser": "^5.1.0",
 		"@vscode/test-electron": "^1.6.2",
 		"copyfiles": "^2.4.1",
-		"css": "^3.0.0",
 		"eslint": "^8.1.0",
 		"glob": "^7.1.7",
 		"mocha": "^9.1.3",
 		"typescript": "^4.4.4",
-		"vsce": "^2.3.0"
+		"vsce": "^2.5.0"
 	},
 	"prettier": {
-		"semi": false
+		"semi": false,
+		"singleQuote": true
 	}
 }
