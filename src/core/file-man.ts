@@ -8,7 +8,6 @@ import {
   workbenchHtml,
 } from "./constants"
 import { generateTheme } from "./theme-man"
-import { reloadWindow, toast } from "./util"
 const fs = require("fs")
 const css = require("css")
 

@@ -1,6 +1,6 @@
 import injectFile, { removeHtmlTag } from "./file-man"
 import { baseThemePath, msgs } from "./constants"
-import { errorToast, formatPath, pipe, reloadWindow, toast } from "./util"
+import { errorToast, formatPath, reloadWindow, toast } from "./util"
 import config from "./config"
 
 function injectWithEffect(path: string) {

@@ -21,7 +21,7 @@ export const getConfig = () => vscode.workspace.getConfiguration("vscodeAestheti
 
 export function formatPath (path: string): string {
   if (isWindows) {
-    return path.replace('/', '\\')
+    return path.replace(/\//g, '\\')
   } else {
     return path
   }
