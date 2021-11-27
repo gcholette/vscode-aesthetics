@@ -1,6 +1,6 @@
 {
 	"name": "vscode-aesthetics",
-	"displayName": "VS Code Aesthetics",
+	"displayName": "Aesthetics",
 	"description": "Customise beyond themes.",
 	"version": "0.2.4",
 	"author": "Gabriel Cholette-Rioux",
@@ -26,26 +26,26 @@
 		"commands": [
 			{
 				"command": "vscode-aesthetics.applyBase",
-				"title": "VS Code Aesthetics: Apply base theme"
+				"title": "Aesthetics: Apply base theme"
 			},
 			{
 				"command": "vscode-aesthetics.applyCustom",
-				"title": "VS Code Aesthetics: Apply custom CSS theme"
+				"title": "Aesthetics: Apply custom CSS theme"
 			},
 			{
 				"command": "vscode-aesthetics.uninstall",
-				"title": "VS Code Aesthetics: Uninstall Theme"
+				"title": "Aesthetics: Uninstall Theme"
 			}
 		],
 		"configuration": {
-			"title": "VS Code Aesthetics",
+			"title": "Aesthetics",
 			"properties": {
-				"vscodeAesthetics.customPath": {
+				"vscode-aesthetics.customPath": {
 					"type": "string",
 					"default": "",
 					"description": "Set the full absolute path for the custom CSS file"
 				},
-				"vscodeAesthetics.enableGlow": {
+				"vscode-aesthetics.enableGlow": {
 					"type": "boolean",
 					"default": true,
 					"description": "Define if the text glass/glow effect is on."
