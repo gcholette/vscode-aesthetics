@@ -1,6 +1,12 @@
 import * as vscode from "vscode"
 import {msgs} from "./constants"
 
+// usage: pipe(firstFn, secondFn, ...)(argument)
+export const pipe =
+    (...fns: any[]) =>
+        (input: any) =>
+            fns.reduce((acc, f) => f(acc), input)
+
 export const isWindows = /^win/.test(process.platform)
 
 export const registerCommand = vscode.commands.registerCommand
@@ -15,7 +21,7 @@ export const getConfig = () => vscode.workspace.getConfiguration("vscodeAestheti
 
 export function formatPath (path: string): string {
   if (isWindows) {
-    return path.replace('/', '\\')
+    return path.replace(/\//g, '\\')
   } else {
     return path
   }

@@ -43,7 +43,6 @@ To use a custom CSS file, go in settings (Ctrl + ,), then search for "Vscode Aes
 Uninstall with the command "VS Code Aesthetics: Uninstall Theme"
 
 
-
 ## Note
 
 This project is still in early development. 
@@ -53,3 +52,14 @@ Only works with Windows for now.
 Once installed, VS Code will say that it's installation is corrupt.
 
 I currently use the extension with [the 2077 theme](https://marketplace.visualstudio.com/items?itemName=Endormi.2077-theme)
+
+
+## Troubleshooting
+
+### EPERM when applying theme
+On windows: run vscode as admin.
+
+On linux: [this stackoverflow link](https://stackoverflow.com/questions/67929938/running-vs-code-with-the-root-privileges-not-work-anymore-in-ubuntu-linux/68637450#68637450)
+
+### Styles not loading when opening vscode or terminals only
+The styles will only apply when opening a text document.

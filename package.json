@@ -2,7 +2,7 @@
 	"name": "vscode-aesthetics",
 	"displayName": "vscode-aesthetics",
 	"description": "Customise beyond themes.",
-	"version": "0.2.1",
+	"version": "0.2.3",
 	"icon": "logo.png",
 	"repository": {
 		"type": "git",
@@ -70,6 +70,7 @@
 		"@typescript-eslint/parser": "^5.1.0",
 		"@vscode/test-electron": "^1.6.2",
 		"copyfiles": "^2.4.1",
+		"css": "^3.0.0",
 		"eslint": "^8.1.0",
 		"glob": "^7.1.7",
 		"mocha": "^9.1.3",
