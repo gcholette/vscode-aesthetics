@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.3] - 2021-11-27
+- VS Code Window automatically refreshes when applying themes
+- Fix windows urls weren't fully converted to \
+- Verification of css files and contents
+
 ## [0.2.2] - 2021-11-18
 - Fix extension details for inside vscode extensions tab
   - Add logo to project
