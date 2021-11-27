@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.4] - 2021-11-27
+- Fix 0.2.3 issue where extension would not find any command
+
 ## [0.2.3] - 2021-11-27
 - VS Code Window automatically refreshes when applying themes
 - Fix windows urls weren't fully converted to \
