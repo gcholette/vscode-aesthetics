@@ -1,4 +1,4 @@
-# Change Log
+# Changelog
 
 ## [0.2.2] - 2021-11-18
 - Fix extension details for inside vscode extensions tab
