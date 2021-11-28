@@ -1,8 +1,8 @@
 {
 	"name": "vscode-aesthetics",
-	"displayName": "VS Code Aesthetics",
+	"displayName": "Aesthetics",
 	"description": "Customise beyond themes.",
-	"version": "0.2.4",
+	"version": "0.3.0",
 	"author": "Gabriel Cholette-Rioux",
 	"publisher": "gcholette",
 	"icon": "logo.png",
@@ -17,38 +17,70 @@
 		"Themes"
 	],
 	"activationEvents": [
-		"onCommand:vscode-aesthetics.applyBase",
+		"onCommand:vscode-aesthetics.applyDefaults",
+		"onCommand:vscode-aesthetics.applyTheme1",
 		"onCommand:vscode-aesthetics.applyCustom",
 		"onCommand:vscode-aesthetics.uninstall"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"themes": [
+			{
+				"label": "Aesthetics #1",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Aesthetics-1.json"
+			}
+		],
 		"commands": [
 			{
-				"command": "vscode-aesthetics.applyBase",
-				"title": "VS Code Aesthetics: Apply base theme"
+				"command": "vscode-aesthetics.applyDefaults",
+				"title": "Aesthetics: Apply defaults"
+			},
+			{
+				"command": "vscode-aesthetics.applyTheme1",
+				"title": "Aesthetics: Apply Theme #1"
 			},
 			{
 				"command": "vscode-aesthetics.applyCustom",
-				"title": "VS Code Aesthetics: Apply custom CSS theme"
+				"title": "Aesthetics: Apply custom CSS"
 			},
 			{
 				"command": "vscode-aesthetics.uninstall",
-				"title": "VS Code Aesthetics: Uninstall Theme"
+				"title": "Aesthetics: Uninstall/Remove Theme"
 			}
 		],
 		"configuration": {
-			"title": "VS Code Aesthetics",
+			"title": "Aesthetics",
 			"properties": {
-				"vscodeAesthetics.customPath": {
-					"type": "string",
-					"default": "",
-					"description": "Set the full absolute path for the custom CSS file"
-				},
-				"vscodeAesthetics.enableGlow": {
+				"vscode-aesthetics.enableGlow": {
 					"type": "boolean",
 					"default": true,
 					"description": "Define if the text glass/glow effect is on."
+				},
+				"vscode-aesthetics.enableWallpaper": {
+					"type": "boolean",
+					"default": true,
+					"description": "Define if the wallpaper is displayed."
+				},
+				"vscode-aesthetics.wallpaperUrl": {
+					"type": "string",
+					"default": "",
+					"description": "Set the wallpaper URL."
+				},
+				"vscode-aesthetics.wallpaperBlurAmnt": {
+					"type": "number",
+					"default": 0,
+					"description": "Set how blurry the wallpaper is. (0 - 10)"
+				},
+				"vscode-aesthetics.wallpaperOpacityAmnt": {
+					"type": "number",
+					"default": 0,
+					"description": "Set how opaque the wallpaper is. (0.0 - 0.8)"
+				},
+				"vscode-aesthetics.customCssFile": {
+					"type": "string",
+					"default": "",
+					"description": "Set the full absolute path for the custom CSS file."
 				}
 			}
 		}

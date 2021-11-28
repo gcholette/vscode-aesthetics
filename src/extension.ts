@@ -1,10 +1,11 @@
 import * as vscode from "vscode"
-import { applyBase, applyCustom, uninstallTheme } from "./core/commands"
+import { applyBase, applyCustom, applyTheme1, uninstallTheme } from "./core/commands"
 import { registerCommand } from "./core/util"
 
 export function activate(context: vscode.ExtensionContext) {
   const registeredCommands = [
-    registerCommand("vscode-aesthetics.applyBase", applyBase),
+    registerCommand("vscode-aesthetics.applyDefaults", applyBase),
+    registerCommand("vscode-aesthetics.applyTheme1", applyTheme1),
     registerCommand("vscode-aesthetics.applyCustom", applyCustom),
     registerCommand("vscode-aesthetics.uninstall", uninstallTheme)
   ]

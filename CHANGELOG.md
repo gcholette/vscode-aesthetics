@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.0] 
+- Rename application inside vscode to "Aesthetics"
+  - Change the text of commands
+- Add standard color themes 
+  - Added "Aesthetics #1" color theme
+- Add wallpaper support
+  - Add on/off param for wallpaper
+  - Add blur intensity config parameter
+  - Add opacity config parameter
+  - Add custom wallpaper URL support
+- Additional security checks to prevent unintended injections
+- Add error message when EPERM to run vscode as admin
+
 ## [0.2.4] - 2021-11-27
 - Fix 0.2.3 issue where extension would not find any command
 
