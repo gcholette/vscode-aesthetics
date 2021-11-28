@@ -27,3 +27,5 @@ export const workbenchPath =
   appDirectory + formatPath("/vs/code/electron-browser/workbench/")
 export const workbenchHtml = workbenchPath + "workbench.html"
 export const scriptPath = workbenchPath + injectedFileName
+
+export const defaultWallpaperUrl = 'https://w.wallhaven.cc/full/4o/wallhaven-4opomm.jpg'

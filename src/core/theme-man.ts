@@ -6,14 +6,14 @@ const textGlowCss = `.view-line {
     text-shadow: 13px 13px 22px;
 }`
 
-const getWallpaperCss = (url: string) => `.monaco-workbench:after {
+const getWallpaperCss = (url: string, blur: number) => `.monaco-workbench:after {
     content: "";
     background-image: url('${url}') !important;
     background-position: center center;
     background-size: cover;
     position: absolute;
     top: 0;
-    filter: blur(3px) saturate(150%);
+    filter: ${blur ? 'blur('+blur+'px)' : ''} saturate(150%);
     left: 0;
     pointer-events: none;
     opacity: 0.14;
@@ -33,13 +33,17 @@ function applyGlow(theme: string) {
 function applyWallpaper(theme: string) {
     const enableWallpaper = config.enableWallpaper()
     const wallpaperUrl = config.wallpaperUrl()
-    if (enableWallpaper && wallpaperUrl) {
-        try {
-            new URL(wallpaperUrl);
-        } catch (e) {
-            return new Error(e+'')
+    const blur = +config.wallpaperBlurAmnt()
+    if (enableWallpaper) {
+        if (wallpaperUrl) {
+            try {
+                new URL(wallpaperUrl);
+            } catch (e) {
+                return new Error(e + '')
+            }
         }
-        return `${getWallpaperCss(wallpaperUrl)}${theme}`
+
+        return `${getWallpaperCss(wallpaperUrl, blur)}${theme}`
     } else {
         return theme
     }

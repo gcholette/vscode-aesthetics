@@ -20,7 +20,7 @@ export function applyTheme1() {
 }
 
 export function applyCustom() {
-  const customPath = formatPath(config.customPath())
+  const customPath = formatPath(config.customCssFile())
   const fileIsDefined = customPath.length > 0
 
   if (fileIsDefined && !customPath.includes(".css")) {

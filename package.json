@@ -67,7 +67,12 @@
 					"default": "",
 					"description": "Set the wallpaper URL."
 				},
-				"vscode-aesthetics.customPath": {
+				"vscode-aesthetics.wallpaperBlurAmnt": {
+					"type": "number",
+					"default": 0,
+					"description": "Set how blurry the wallpaper is."
+				},
+				"vscode-aesthetics.customCssFile": {
 					"type": "string",
 					"default": "",
 					"description": "Set the full absolute path for the custom CSS file."
