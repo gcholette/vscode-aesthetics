@@ -1,5 +1,5 @@
 import injectFile, { removeHtmlTag } from "./file-man"
-import { baseThemePath, msgs } from "./constants"
+import { baseThemePath, msgs, theme1Path } from "./constants"
 import { errorToast, formatPath, reloadWindow, toast } from "./util"
 import config from "./config"
 
@@ -13,6 +13,10 @@ function injectWithEffect(path: string) {
 
 export function applyBase() {
   return injectWithEffect(baseThemePath)
+}
+
+export function applyTheme1() {
+  return injectWithEffect(theme1Path)
 }
 
 export function applyCustom() {
@@ -34,7 +38,5 @@ export function applyCustom() {
 
 export function uninstallTheme() {
   removeHtmlTag()
-  return toast(msgs.success_uninstall).then(() => {
-    reloadWindow()
-  })
+  reloadWindow()
 }
