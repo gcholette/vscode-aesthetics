@@ -70,7 +70,12 @@
 				"vscode-aesthetics.wallpaperBlurAmnt": {
 					"type": "number",
 					"default": 0,
-					"description": "Set how blurry the wallpaper is."
+					"description": "Set how blurry the wallpaper is. (0 - 10)"
+				},
+				"vscode-aesthetics.wallpaperOpacityAmnt": {
+					"type": "number",
+					"default": 0,
+					"description": "Set how opaque the wallpaper is. (0.0 - 0.8)"
 				},
 				"vscode-aesthetics.customCssFile": {
 					"type": "string",
