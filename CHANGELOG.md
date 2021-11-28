@@ -11,6 +11,7 @@
   - Add opacity config parameter
   - Add custom wallpaper URL support
 - Additional security checks to prevent unintended injections
+- Add error message when EPERM to run vscode as admin
 
 ## [0.2.4] - 2021-11-27
 - Fix 0.2.3 issue where extension would not find any command

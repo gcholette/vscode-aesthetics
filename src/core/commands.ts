@@ -8,7 +8,13 @@ function injectWithEffect(path: string) {
     .then(() => {
       reloadWindow()
     })
-    .catch((e) => errorToast(e))
+    .catch((e) => {
+      if (e.includes('EPERM')) {
+        errorToast("Unauthorized, VS Code needs to be run as admin to use Aesthetics.")
+      } else {
+        errorToast(e)
+      }
+    })
 }
 
 export function applyBase() {

@@ -20,7 +20,7 @@ An extension to customize beyond themes.
 </p>
 
 
-VS Code Aesthetics is an extension that allows for deeper customisation than what normal themes permit, like gradients, glow effects and css animations on anything in the UI.
+VS Code Aesthetics is an extension that allows for deeper customisation than what normal themes permit, like gradients, wallpapers, glow effects and css animations on anything in the UI.
 
 ## How to use
 
@@ -31,16 +31,26 @@ Download the .vsix extension from [the releases page](https://github.com/gcholet
 
 ### Usage
 #### Apply base styles
-In the command palette, the command "VS Code Aesthetics: Apply base theme" will apply the default styles.
+In the command palette, the command "Aesthetics: Apply defaults" will apply the glow effect and the wallpaper according to your settings.
 
-#### Enable glow effect
-To disable/enable the glow effect, go in settings (Ctrl + ,), then search for "Vscode Aesthetics: Enable Glow". After changing the value, you will need to re-run the "Apply theme" command.
+#### Apply standard theme
+Aesthetics also comes with one theme right now (a mix of 2077 and darker material UI oceanic), available under `Preferences: color theme > Aesthetics #1`
+
+#### Enable/Disable wallpaper
+To disable/enable the glow effect, go in settings (Ctrl + ,), then search for "Aesthetics: Enable Wallpaper". After changing the value, you will need to re-run any "Aesthetics: Apply" command.
+
+You can also in these settings set the url of the wallpaper, right now it works well with http urls
+
+The opacity of the wallpaper aswell as the blurriness intensity are customisable in settings aswell.
+
+#### Enable/Disable glow effect
+To disable/enable the glow effect, go in settings (Ctrl + ,), then search for "aesthetics Enable Glow". After changing the value, you will need to re-run any "Aesthetics: Apply" command.
 
 #### Use custom CSS file
-To use a custom CSS file, go in settings (Ctrl + ,), then search for "Vscode Aesthetics: Custom Path" then enter the absolute path for the css file you wish to provide. Then, run the command "VS Code Aesthetics: Apply custom css theme".
+To use a custom CSS file, go in settings (Ctrl + ,), then search for "aesthetics Custom Path" then enter the absolute path for the css file you wish to provide. Then, run the command "Aesthetics: Apply custom CSS".
 
 #### Uninstall a theme
-Uninstall with the command "VS Code Aesthetics: Uninstall Theme"
+Uninstall with the command "Aesthetics: Uninstall/Remove Theme"
 
 
 ## Note
@@ -49,6 +59,8 @@ This project is still in early development.
 
 Once installed, VS Code will say that it's installation is corrupt.
 
+Everytime VS Code updates it will overwrite the extension's applied custom CSS. You will need to re-apply Aesthetics after every update if you want to keep using it.
+
 ## Troubleshooting
 
 ### EPERM when applying theme
@@ -56,5 +68,5 @@ On windows: run vscode as admin.
 
 On linux: [this stackoverflow link](https://stackoverflow.com/questions/67929938/running-vs-code-with-the-root-privileges-not-work-anymore-in-ubuntu-linux/68637450#68637450)
 
-### Styles not loading when opening vscode or terminals only
-The styles will only apply when opening a text document.
+### Styles not loading when opening vscode
+The styles will only apply when opening a text document. (when a workbench loads)
