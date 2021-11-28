@@ -13,44 +13,59 @@ An extension to customize beyond themes.
   <img src="https://user-images.githubusercontent.com/8711020/142301382-70b9893c-e4e8-444f-ae7d-856adc06e05d.png" />
 </p>
 
+![image](https://user-images.githubusercontent.com/8711020/143777140-c2aa444a-4edc-4aa1-a3a0-2bd656a2d5a1.png)
+
 ![demo_1](https://user-images.githubusercontent.com/8711020/142354891-43c27b11-a106-4f22-931b-562fab20a60f.png)
+
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/8711020/142301382-70b9893c-e4e8-444f-ae7d-856adc06e05d.png" />
 </p>
 
+## Features
 
 VS Code Aesthetics is an extension that allows for deeper customisation than what normal themes permit, like gradients, wallpapers, glow effects and css animations on anything in the UI.
+
+- Custom CSS injection inside workbench (provide your own CSS stylesheet!)
+- Wallpaper support
+- Text glow / glass effect
+- Pre defined custom CSS styles (animated multicolor stripes)
+- VS code standard themes (1 right now (ideal for semitransparent with wallpaper))
 
 ## How to use
 
 ### Installation
 Download the .vsix extension from [the releases page](https://github.com/gcholette/vscode-aesthetics/releases) and install it manually. 
 
-([Official documentation on how to install manually](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix))
+([Official documentation on how to install vscode extensions manually](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix))
 
 ### Usage
 #### Apply base styles
-In the command palette, the command "Aesthetics: Apply defaults" will apply the glow effect and the wallpaper according to your settings.
+In the command palette, the command `Aesthetics: Apply defaults` will apply the glow effect and the wallpaper according to your settings.
 
-#### Apply standard theme
+#### Apply pre-defined css themes
+In the command palette, the command `Aesthetics: Apply Theme #1` will apply default, plus some pre-defined additionnal aesthetics elements.
+
+Right now, Theme #1 is the animated multicolor stripes and the animated badges.
+
+#### Apply standard themes
 Aesthetics also comes with one theme right now (a mix of 2077 and darker material UI oceanic), available under `Preferences: color theme > Aesthetics #1`
 
 #### Enable/Disable wallpaper
-To disable/enable the glow effect, go in settings (Ctrl + ,), then search for "Aesthetics: Enable Wallpaper". After changing the value, you will need to re-run any "Aesthetics: Apply" command.
+To disable/enable the glow effect, go in settings (Ctrl + ,), then search for `Aesthetics: Enable Wallpaper`. After changing the value, you will need to re-run any `Aesthetics: Apply` command.
 
 You can also in these settings set the url of the wallpaper, right now it works well with http urls
 
 The opacity of the wallpaper aswell as the blurriness intensity are customisable in settings aswell.
 
 #### Enable/Disable glow effect
-To disable/enable the glow effect, go in settings (Ctrl + ,), then search for "aesthetics Enable Glow". After changing the value, you will need to re-run any "Aesthetics: Apply" command.
+To disable/enable the glow effect, go in settings (Ctrl + ,), then search for `aesthetics Enable Glow`. After changing the value, you will need to re-run any `Aesthetics: Apply` command.
 
 #### Use custom CSS file
-To use a custom CSS file, go in settings (Ctrl + ,), then search for "aesthetics Custom Path" then enter the absolute path for the css file you wish to provide. Then, run the command "Aesthetics: Apply custom CSS".
+To use a custom CSS file, go in settings (Ctrl + ,), then search for `aesthetics Custom Path` then enter the absolute path for the css file you wish to provide. Then, run the command `Aesthetics: Apply custom CSS`.
 
 #### Uninstall a theme
-Uninstall with the command "Aesthetics: Uninstall/Remove Theme"
+Uninstall with the command `Aesthetics: Uninstall/Remove Theme`
 
 
 ## Note
