@@ -73,7 +73,11 @@ export default function injectFile(
     )
   }
 
-  insertHtmlTag(tag)
+  try {
+    insertHtmlTag(tag)
+  } catch(e) {
+    return Promise.reject(e)
+  }
 
   // check if tag was successfully applied to html
   const postWorkbenchContents = fs.readFileSync(workbenchHtml, "utf-8")

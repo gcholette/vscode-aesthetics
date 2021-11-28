@@ -47,12 +47,7 @@ Uninstall with the command "VS Code Aesthetics: Uninstall Theme"
 
 This project is still in early development. 
 
-Only works with Windows for now.
-
 Once installed, VS Code will say that it's installation is corrupt.
-
-I currently use the extension with [the 2077 theme](https://marketplace.visualstudio.com/items?itemName=Endormi.2077-theme)
-
 
 ## Troubleshooting
 

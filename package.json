@@ -2,7 +2,7 @@
 	"name": "vscode-aesthetics",
 	"displayName": "Aesthetics",
 	"description": "Customise beyond themes.",
-	"version": "0.2.4",
+	"version": "0.3.0",
 	"author": "Gabriel Cholette-Rioux",
 	"publisher": "gcholette",
 	"icon": "logo.png",
@@ -23,14 +23,21 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"themes": [
+			{
+				"label": "Aesthetics #1",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Aesthetics-1.json"
+			}
+		],
 		"commands": [
 			{
 				"command": "vscode-aesthetics.applyBase",
-				"title": "Aesthetics: Apply base theme"
+				"title": "Aesthetics: Apply default"
 			},
 			{
 				"command": "vscode-aesthetics.applyCustom",
-				"title": "Aesthetics: Apply custom CSS theme"
+				"title": "Aesthetics: Apply custom CSS"
 			},
 			{
 				"command": "vscode-aesthetics.uninstall",
