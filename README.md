@@ -40,7 +40,7 @@ Download the .vsix extension from [the releases page](https://github.com/gcholet
 ([Official documentation on how to install vscode extensions manually](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix))
 
 ### Usage
-#### Apply base styles
+#### Apply default styles (glow, wallpaper)
 In the command palette, the command `Aesthetics: Apply defaults` will apply the glow effect and the wallpaper according to your settings.
 
 #### Apply pre-defined css themes
