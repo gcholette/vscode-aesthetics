@@ -78,10 +78,20 @@ Everytime VS Code updates it will overwrite the extension's applied custom CSS. 
 
 ## Troubleshooting
 
-### EPERM when applying theme
+### Permission denied when applying theme
 On windows: run vscode as admin.
 
-On linux: [this stackoverflow link](https://stackoverflow.com/questions/67929938/running-vs-code-with-the-root-privileges-not-work-anymore-in-ubuntu-linux/68637450#68637450)
+On linux:
+```
+# get vscode path
+whereis code
+# give privileges to user
+sudo chown -R <user> <vscode path>
+
+# example
+sudo chown -R kali /usr/share/code
+```
+
 
 ### Styles not loading when opening vscode
 The styles will only apply when opening a text document. (when a workbench loads)
