@@ -1,28 +1,15 @@
-import injectFile, { removeHtmlTag } from "./file-man"
-import { baseThemePath, msgs, theme1Path } from "./constants"
+import { injectWithEffect, removeHtmlTag } from "./file-man"
 import { errorToast, formatPath, reloadWindow, toast } from "./util"
 import config from "./config"
+import { originalThemePath } from "./constants"
 
-function injectWithEffect(path: string) {
-  return injectFile(path)
-    .then(() => {
-      reloadWindow()
-    })
-    .catch((e) => {
-      if (e.includes('EPERM')) {
-        errorToast("Unauthorized, VS Code needs to be run as admin to use Aesthetics.")
-      } else {
-        errorToast(e)
-      }
-    })
-}
+export function apply() {
+  // if flavor === original
+  return injectWithEffect(originalThemePath)
 
-export function applyBase() {
-  return injectWithEffect(baseThemePath)
-}
 
-export function applyTheme1() {
-  return injectWithEffect(theme1Path)
+  // if flavor === custom
+  // applyCustom()
 }
 
 export function applyCustom() {

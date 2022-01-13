@@ -1,13 +1,13 @@
 import {
-  baseThemePath,
   cssInjectorPath,
   injectedFileName,
   injectedTagName,
-  msgs,
+  originalThemePath,
   scriptPath,
   workbenchHtml,
 } from './constants'
 import { generateTheme } from './theme-man'
+import { errorToast, reloadWindow } from './util'
 const fs = require('fs')
 const css = require('css')
 
@@ -59,8 +59,8 @@ export function removeHtmlTag(): void {
   fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
 }
 
-export default function injectFile(
-  cssFilePath: string = baseThemePath
+export function injectFile(
+  cssFilePath: string = originalThemePath
 ): Promise<any> {
   const tag = generateHtmlTag()
 
@@ -83,4 +83,18 @@ export default function injectFile(
   } else {
     return Promise.reject('Error: Theme was not applied successfully.')
   }
+}
+
+export function injectWithEffect(path: string) {
+  return injectFile(path)
+    .then(() => {
+      reloadWindow()
+    })
+    .catch((e) => {
+      if (e.includes('EPERM')) {
+        errorToast("Unauthorized, VS Code needs to be run as admin to use Aesthetics.")
+      } else {
+        errorToast(e)
+      }
+    })
 }

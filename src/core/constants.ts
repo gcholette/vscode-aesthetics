@@ -15,12 +15,10 @@ export const msgs = {
 export const injectedTagName = "vscode-aesthetics-1"
 export const injectedFileName = "vscode-aesthetics.js"
 
-export const localInjectablePath = __dirname + formatPath("/injectable")
+export const localInjectablePath = __dirname + formatPath("/../injectable")
 export const themePath = localInjectablePath + formatPath("/themes")
 export const injectorPath = localInjectablePath + formatPath("/injectors")
-export const baseThemePath = themePath + formatPath("/base.css")
-export const theme1Path = themePath + formatPath("/theme1.css")
-export const retroGlowTheme = themePath + formatPath("/retro-glow.css")
+export const originalThemePath = themePath + formatPath("/original.css")
 export const cssInjectorPath = injectorPath + formatPath("/css-injector.js")
 export const appDirectory = path.dirname(require?.main?.filename || '')
 export const workbenchPath =
