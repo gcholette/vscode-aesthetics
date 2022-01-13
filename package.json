@@ -18,9 +18,7 @@
   ],
   "activationEvents": [
     "onCommand:vscode-aesthetics.apply",
-    "onCommand:vscode-aesthetics.applyTheme1",
-    "onCommand:vscode-aesthetics.applyCustom",
-    "onCommand:vscode-aesthetics.uninstall"
+    "onCommand:vscode-aesthetics.remove"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -42,8 +40,8 @@
         "title": "Aesthetics: Apply"
       },
       {
-        "command": "vscode-aesthetics.uninstall",
-        "title": "Aesthetics: Uninstall/Remove Theme"
+        "command": "vscode-aesthetics.remove",
+        "title": "Aesthetics: Remove"
       }
     ],
     "configuration": {
@@ -52,49 +50,45 @@
         "vscode-aesthetics.enableGlow": {
           "type": "boolean",
           "default": true,
-          "description": "Define if the text glass/glow effect is on."
+          "description": "Define if the text glass/glow effect is on. \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.enableWallpaper": {
           "type": "boolean",
           "default": true,
-          "description": "Define if the wallpaper is displayed."
+          "description": "Define if the wallpaper is displayed. \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.flavor": {
           "type": "string",
-          "default": "#1",
+          "default": "Original",
+          "description": "Different colors and UI elements. \nRun command \"Aesthetics: Apply\" to take effect",
           "enum": [
             "Original",
-            "Nord"
+            "Custom"
           ],
           "enumDescriptions": [
-            "The original aesthetics",
-            "Blue pink variant"
+            "The original aesthetics.",
+            "Use your custom CSS stylesheet to make vscode aesthetic."
           ]
-        },
-        "vscode-aesthetics.enableCustomCss": {
-          "type": "boolean",
-          "default": true,
-          "description": "Define if your custom CSS file gets used."
         },
         "vscode-aesthetics.wallpaperUrl": {
           "type": "string",
           "default": "",
-          "description": "Set the wallpaper URL."
+          "description": "Set the wallpaper URL. \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.wallpaperBlurAmnt": {
           "type": "number",
           "default": 5,
-          "description": "Set how blurry the wallpaper is. (0 - 10)"
+          "description": "Set how blurry the wallpaper is. (0 - 10) \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.wallpaperOpacityAmnt": {
           "type": "number",
           "default": 0.14,
-          "description": "Set how opaque the wallpaper is. (0.0 - 0.8)"
+          "description": "Set how opaque the wallpaper is. (0.0 - 0.8) \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.customCssFile": {
           "type": "string",
           "default": "",
-          "description": "Set the full absolute path for the custom CSS file."
+          "description": "Set the full absolute path for the custom CSS file. (Use if flavor Custom is selected) \nRun command \"Aesthetics: Apply\" to take effect"
         }
       }
     }

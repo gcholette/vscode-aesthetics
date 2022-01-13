@@ -11,6 +11,7 @@ const throwIfNotType = (value: any, type = 'number', propertyName: string) => {
 
 export default {
   customCssFile: (): string => getConfig().customCssFile,
+  flavor: (): string => getConfig().flavor,
   enableGlow: (): boolean =>
     throwIfNotType(getConfig().enableGlow, 'boolean', 'Enable Glow'),
   wallpaperUrl: (): string => getConfig().wallpaperUrl || defaultWallpaperUrl,
