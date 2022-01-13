@@ -6,3 +6,5 @@ export enum Flavors {
 export type Flavor 
   = Flavors.Original 
   | Flavors.Custom
+
+export type HtmlTag = string

@@ -7,11 +7,10 @@ import {
   workbenchHtml,
 } from './constants'
 import { generateTheme } from './theme-man'
+import { HtmlTag } from './types'
 import { errorToast, reloadWindow } from './util'
 const fs = require('fs')
 const css = require('css')
-
-type HtmlTag = string
 
 function addOrReplaceTag(fileContent: string, tag: HtmlTag) {
   const trimmedContent = fileContent

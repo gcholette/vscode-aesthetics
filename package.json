@@ -24,14 +24,14 @@
   "contributes": {
     "themes": [
       {
-        "label": "Aesthetics #1",
+        "label": "Aesthetics Original",
         "uiTheme": "vs-dark",
-        "path": "./themes/Aesthetics-1.json"
+        "path": "./themes/Aesthetics-Original.json"
       },
       {
         "label": "Aesthetics Cold",
         "uiTheme": "vs-dark",
-        "path": "./themes/Cold-1.json"
+        "path": "./themes/Cold.json"
       }
     ],
     "commands": [

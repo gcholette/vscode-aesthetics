@@ -8,8 +8,10 @@ export function apply() {
   switch (config.flavor() as Flavor) {
     case Flavors.Original:
       return injectWithEffect(originalThemePath)
-    default:
+    case Flavors.Custom:
       return applyCustom()
+    default:
+      return injectWithEffect(originalThemePath)
   }
 }
 
