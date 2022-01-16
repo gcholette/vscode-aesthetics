@@ -1,3 +1,4 @@
+import config from './config'
 import {
   cssInjectorPath,
   injectedFileName,
@@ -20,24 +21,38 @@ function addOrReplaceTag(fileContent: string, tag: HtmlTag) {
   return `${trimmedContent}${tag}\n</html>`
 }
 
-function generateHtmlTag(
+export function generateHtmlTag(
   filename: string = injectedFileName,
   name: string = injectedTagName
 ): HtmlTag {
   return `<!--${name}--><script src="${filename}"></script><!--${name}-->`
 }
 
+
+export function validateCssFileContents(fileContent: string) {
+  try {
+    css.parse(fileContent)
+    return true
+  } catch (e) {
+    throw new Error(`[Invalid CSS] ${e}`)
+  }
+}
+
 function buildFile(cssFilePath: string): void {
   // upload file mentionned in tag inside workbench directory
   const cssInjectorFileContents = fs.readFileSync(cssInjectorPath, 'utf-8')
   const themeFileContents = fs.readFileSync(cssFilePath, 'utf-8')
+  const enableCustomCss = config.enableCustomCss()
+  const customFileContents = enableCustomCss ? fs.readFileSync(config.customCssFile(), 'utf-8') : ''
 
-  try {
-    css.parse(themeFileContents)
-  } catch (e) {
-    throw new Error(`${e}`)
+  // Merging of the custom css and official css flavors
+  const fileContents = themeFileContents + `\n${customFileContents}`
+
+  if (!validateCssFileContents(fileContents)) {
+    return
   }
-  const theme = generateTheme(themeFileContents)
+
+  const theme = generateTheme(fileContents)
   const consolidatedFileContents = `const customCssStr = \`${theme}\`;\n\n${cssInjectorFileContents}`
   fs.writeFileSync(scriptPath, consolidatedFileContents, 'utf-8')
 }
@@ -61,7 +76,7 @@ export function removeHtmlTag(): void {
 export function injectFile(
   cssFilePath: string = originalThemePath
 ): Promise<any> {
-  const tag = generateHtmlTag()
+  const tag: HtmlTag = generateHtmlTag()
 
   try {
     buildFile(cssFilePath)
@@ -91,7 +106,9 @@ export function injectWithEffect(path: string) {
     })
     .catch((e) => {
       if (e.includes('EPERM')) {
-        errorToast("Unauthorized, VS Code needs to be run as admin to use Aesthetics.")
+        errorToast(
+          'Unauthorized, VS Code needs to be run as admin to use Aesthetics.'
+        )
       } else {
         errorToast(e)
       }

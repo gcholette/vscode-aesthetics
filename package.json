@@ -2,7 +2,7 @@
   "name": "vscode-aesthetics",
   "displayName": "Aesthetics",
   "description": "Customise beyond themes.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "author": "Gabriel Cholette-Rioux",
   "publisher": "gcholette",
   "icon": "logo.png",
@@ -63,7 +63,8 @@
           "description": "Different colors and UI elements. \nRun command \"Aesthetics: Apply\" to take effect",
           "enum": [
             "Original",
-            "Custom"
+            "Teal",
+            "None"
           ],
           "enumDescriptions": [
             "The original aesthetics.",
@@ -84,6 +85,11 @@
           "type": "number",
           "default": 0.14,
           "description": "Set how opaque the wallpaper is. (0.0 - 0.8) \nRun command \"Aesthetics: Apply\" to take effect"
+        },
+        "vscode-aesthetics.enableCustomCss": {
+          "type": "boolean",
+          "default": true,
+          "description": "Define if your custom CSS file gets used."
         },
         "vscode-aesthetics.customCssFile": {
           "type": "string",

@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import { apply, applyCustom, remove } from "./core/commands"
+import { apply, remove } from "./core/commands"
 import { registerCommand } from "./core/util"
 
 export function activate(context: vscode.ExtensionContext) {

@@ -30,7 +30,7 @@ VS Code Aesthetics is an extension that allows for deeper customisation than wha
 - Wallpaper support
 - Text glow / glass effect
 - Pre defined custom CSS styles (animated multicolor stripes)
-- VS code standard themes (1 right now (ideal for semitransparent with wallpaper))
+- VS code color themes 
 
 ## How to use
 
@@ -41,7 +41,7 @@ Download the .vsix extension from [the releases page](https://github.com/gcholet
 
 ### Usage
 #### Apply default styles (glow, wallpaper)
-In the command palette, the command `Aesthetics: Apply defaults` will apply the glow effect and the wallpaper according to your settings.
+In the command palette, the command `Aesthetics: Apply` will apply the glow effect and the wallpaper according to your settings.
 
 #### Apply pre-defined css themes
 In the command palette, the command `Aesthetics: Apply Theme #1` will apply default, plus some pre-defined additionnal aesthetics elements.
@@ -75,6 +75,8 @@ This project is still in early development.
 Once installed, VS Code will say that it's installation is corrupt.
 
 Everytime VS Code updates it will overwrite the extension's applied custom CSS. You will need to re-apply Aesthetics after every update if you want to keep using it.
+
+When updating the extension, it is preferable to uninstall the old version before. Otherwise, because the updated extension commands have changed, all old commands will remain in vscode's command prompt even tough the new version may not contain them, leading to unexpected behaviors. But from 0.4 forward, the api should remain the same.
 
 ## Troubleshooting
 
