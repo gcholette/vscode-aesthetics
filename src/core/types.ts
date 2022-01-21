@@ -1,12 +1,16 @@
 export enum Flavors {
   Original = 'Original',
+  Sunset = 'Sunset',
+  Neon = 'Neon',
   Teal = 'Teal',
-  None = 'None'
+  Empty = 'Empty'
 }
 
 export type Flavor 
   = Flavors.Original 
+  | Flavors.Sunset
+  | Flavors.Neon
   | Flavors.Teal
-  | Flavors.None
+  | Flavors.Empty
 
 export type HtmlTag = string

@@ -21,6 +21,8 @@ export const themePath = localInjectablePath + formatPath("/themes")
 export const injectorPath = localInjectablePath + formatPath("/injectors")
 export const originalThemePath = themePath + formatPath("/original.css")
 export const tealThemePath = themePath + formatPath("/original-teal.css")
+export const sunsetThemePath = themePath + formatPath("/original-sunset.css")
+export const neonThemePath = themePath + formatPath("/original-neon.css")
 export const emptyThemePath = themePath + formatPath("/empty.css")
 export const cssInjectorPath = injectorPath + formatPath("/css-injector.js")
 export const appDirectory = path.dirname(require?.main?.filename || '')
@@ -34,6 +36,8 @@ export const defaultWallpaperUrl = 'https://w.wallhaven.cc/full/4o/wallhaven-4op
 
 export const flavorMapping = {
   [Flavors.Original]: originalThemePath,
+  [Flavors.Sunset]: sunsetThemePath,
+  [Flavors.Neon]: neonThemePath,
   [Flavors.Teal]: tealThemePath,
-  [Flavors.None]: emptyThemePath,
+  [Flavors.Empty]: emptyThemePath,
 }

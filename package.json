@@ -26,7 +26,7 @@
       {
         "label": "Aesthetics Original",
         "uiTheme": "vs-dark",
-        "path": "./themes/Aesthetics-Original.json"
+        "path": "./themes/Original.json"
       },
       {
         "label": "Aesthetics Cold",
@@ -62,13 +62,18 @@
           "default": "Original",
           "description": "Different colors and UI elements. \nRun command \"Aesthetics: Apply\" to take effect",
           "enum": [
+            "Empty",
+            "Neon",
             "Original",
-            "Teal",
-            "None"
+            "Sunset",
+            "Teal"
           ],
           "enumDescriptions": [
-            "The original aesthetics.",
-            "Use your custom CSS stylesheet to make vscode aesthetic."
+            "Useful when using custom CSS",
+            null,
+            null,
+            null,
+            null
           ]
         },
         "vscode-aesthetics.wallpaperUrl": {
