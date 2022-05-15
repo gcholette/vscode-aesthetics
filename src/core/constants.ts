@@ -32,7 +32,7 @@ export const workbenchHtml = workbenchPath + "workbench.html"
 export const scriptPath = workbenchPath + injectedFileName
 export const customScriptPath = workbenchPath + injectedFileName
 
-export const defaultWallpaperUrl = 'https://w.wallhaven.cc/full/4o/wallhaven-4opomm.jpg'
+export const defaultWallpaperUrl = 'https://w.wallhaven.cc/full/28/wallhaven-28k71g.png'
 
 export const flavorMapping = {
   [Flavors.Original]: originalThemePath,

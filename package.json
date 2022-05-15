@@ -73,12 +73,12 @@
         },
         "vscode-aesthetics.wallpaperUrl": {
           "type": "string",
-          "default": "",
+          "default": "https://w.wallhaven.cc/full/28/wallhaven-28k71g.png",
           "description": "Set the wallpaper URL. \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.wallpaperBlurAmnt": {
           "type": "number",
-          "default": 5,
+          "default": 7,
           "description": "Set how blurry the wallpaper is. (0 - 10) \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.wallpaperOpacityAmnt": {
@@ -88,7 +88,7 @@
         },
         "vscode-aesthetics.enableCustomCss": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Define if your custom CSS file gets used."
         },
         "vscode-aesthetics.customCssFile": {
