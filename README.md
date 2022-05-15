@@ -52,6 +52,9 @@ The opacity of the wallpaper aswell as the blurriness intensity are customisable
 #### Enable/Disable glow effect
 To disable/enable the glow effect, go in settings (Ctrl + ,), then search for `aesthetics Enable Glow`. After changing the value, you will need to re-run any `Aesthetics: Apply` command.
 
+#### Change flavor
+To change the theme flavor, go in settings (Ctrl + ,), then search for `aesthetics Flavor`. After changing the value, you will need to re-run any `Aesthetics: Apply` command.
+
 #### Use custom CSS file
 To use a custom CSS file, go in settings (Ctrl + ,), then search for `Aesthetics Custom CSS File` then enter the absolute path for the css file you wish to provide. Then, run the command `Aesthetics: Apply`.
 
