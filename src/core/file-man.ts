@@ -6,6 +6,7 @@ import {
   originalThemePath,
   scriptPath,
   workbenchHtml,
+  workbenchPath,
 } from './constants'
 import { generateTheme } from './theme-man'
 import { HtmlTag } from './types'
@@ -38,7 +39,7 @@ export function validateCssFileContents(fileContent: string) {
   }
 }
 
-function buildFile(cssFilePath: string): void {
+function buildFile(cssFilePath: string, filename: string = 'vscode-aesthetics.js'): void {
   // upload file mentionned in tag inside workbench directory
   const cssInjectorFileContents = fs.readFileSync(cssInjectorPath, 'utf-8')
   const themeFileContents = fs.readFileSync(cssFilePath, 'utf-8')
@@ -54,7 +55,7 @@ function buildFile(cssFilePath: string): void {
 
   const theme = generateTheme(fileContents)
   const consolidatedFileContents = `const customCssStr = \`${theme}\`;\n\n${cssInjectorFileContents}`
-  fs.writeFileSync(scriptPath, consolidatedFileContents, 'utf-8')
+  fs.writeFileSync(workbenchPath + filename, consolidatedFileContents, 'utf-8')
 }
 
 function insertHtmlTag(tag: HtmlTag): void {
@@ -76,10 +77,19 @@ export function removeHtmlTag(): void {
 export function injectFile(
   cssFilePath: string = originalThemePath
 ): Promise<any> {
-  const tag: HtmlTag = generateHtmlTag()
+
+  // delete old injection scrips (cache issues)
+  const dirs = fs.readdirSync(workbenchPath).filter((x: any) => x.includes('vscode-aesthetics'))
+  dirs.forEach((x: any) => {
+    removeHtmlTag()
+    fs.unlinkSync(workbenchPath + x)
+  })
+
+  const filename = `vscode-aesthetics-${Math.round(Math.random() * 100000)}.js`
+  const tag: HtmlTag = generateHtmlTag(filename)
 
   try {
-    buildFile(cssFilePath)
+    buildFile(cssFilePath, filename)
   } catch (e) {
     return Promise.reject('Error: Theme did not apply successfullly - ' + e)
   }
