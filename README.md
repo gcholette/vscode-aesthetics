@@ -7,30 +7,22 @@ VS Code Aesthetics
 
 
 <p align="center">
-An extension to customize beyond themes.
-</p>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/8711020/142301382-70b9893c-e4e8-444f-ae7d-856adc06e05d.png" />
+Customize VS Code beyond themes
 </p>
 
-![image](https://user-images.githubusercontent.com/8711020/143777140-c2aa444a-4edc-4aa1-a3a0-2bd656a2d5a1.png)
-
-![demo_1](https://user-images.githubusercontent.com/8711020/142354891-43c27b11-a106-4f22-931b-562fab20a60f.png)
-
-
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/8711020/142301382-70b9893c-e4e8-444f-ae7d-856adc06e05d.png" />
+    <img src="https://user-images.githubusercontent.com/8711020/168487615-e46cb876-487d-4371-8e65-5f5f69f8164c.png" />
 </p>
 
 ## Features
 
 VS Code Aesthetics is an extension that allows for deeper customisation than what normal themes permit, like gradients, wallpapers, glow effects and css animations on anything in the UI.
 
-- Custom CSS injection inside workbench (provide your own CSS stylesheet!)
 - Wallpaper support
 - Text glow / glass effect
-- Pre defined custom CSS styles (animated multicolor stripes)
-- VS code color themes 
+- Various flavors to choose from
+- One standard color theme
+- Custom CSS injection inside workbench (provide your own CSS stylesheet!)
 
 ## How to use
 
@@ -40,32 +32,31 @@ Download the .vsix extension from [the releases page](https://github.com/gcholet
 ([Official documentation on how to install vscode extensions manually](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix))
 
 ### Usage
-#### Apply default styles (glow, wallpaper)
-In the command palette, the command `Aesthetics: Apply` will apply the glow effect and the wallpaper according to your settings.
+#### Apply Aesthetics
+In the command palette, the command `Aesthetics: Apply` will apply styling according to settings. 
 
-#### Apply pre-defined css themes
-In the command palette, the command `Aesthetics: Apply Theme #1` will apply default, plus some pre-defined additionnal aesthetics elements.
+Modify settings in VS Code's setting editor (CTRL + ,) under Extensions > Aesthetics.
 
-Right now, Theme #1 is the animated multicolor stripes and the animated badges.
+This command needs to be run everytime something changed in your settings!
 
 #### Apply standard themes
-Aesthetics also comes with one theme right now (a mix of 2077 and darker material UI oceanic), available under `Preferences: color theme > Aesthetics #1`
+Aesthetics also comes with one theme right now available under `Preferences: color theme > Aesthetics Original`
 
 #### Enable/Disable wallpaper
 To disable/enable the glow effect, go in settings (Ctrl + ,), then search for `Aesthetics: Enable Wallpaper`. After changing the value, you will need to re-run any `Aesthetics: Apply` command.
 
-You can also in these settings set the url of the wallpaper, right now it works well with http urls
+You can also in these settings set the url of the wallpaper, right now it works well with http urls.
 
-The opacity of the wallpaper aswell as the blurriness intensity are customisable in settings aswell.
+The opacity of the wallpaper aswell as the blurriness intensity are customisable in settings.
 
 #### Enable/Disable glow effect
 To disable/enable the glow effect, go in settings (Ctrl + ,), then search for `aesthetics Enable Glow`. After changing the value, you will need to re-run any `Aesthetics: Apply` command.
 
 #### Use custom CSS file
-To use a custom CSS file, go in settings (Ctrl + ,), then search for `aesthetics Custom Path` then enter the absolute path for the css file you wish to provide. Then, run the command `Aesthetics: Apply custom CSS`.
+To use a custom CSS file, go in settings (Ctrl + ,), then search for `Aesthetics Custom CSS File` then enter the absolute path for the css file you wish to provide. Then, run the command `Aesthetics: Apply`.
 
-#### Uninstall a theme
-Uninstall with the command `Aesthetics: Uninstall/Remove Theme`
+#### Remove Aesthetics 
+Uninstall with the command `Aesthetics: Remove`
 
 
 ## Note
@@ -76,7 +67,7 @@ Once installed, VS Code will say that it's installation is corrupt.
 
 Everytime VS Code updates it will overwrite the extension's applied custom CSS. You will need to re-apply Aesthetics after every update if you want to keep using it.
 
-When updating the extension, it is preferable to uninstall the old version before. Otherwise, because the updated extension commands have changed, all old commands will remain in vscode's command prompt even tough the new version may not contain them, leading to unexpected behaviors. But from 0.4 forward, the api should remain the same.
+When updating the extension, it is preferable to uninstall the old versions of this extension before. Otherwise, because the updated extension commands have changed, all old commands will remain in vscode's command prompt even tough the new version may not contain them, leading to unexpected behaviors. From 0.4 forward, the api should remain the same.
 
 ## Troubleshooting
 
@@ -93,7 +84,3 @@ sudo chown -R <user> <vscode path>
 # example
 sudo chown -R kali /usr/share/code
 ```
-
-
-### Styles not loading when opening vscode
-The styles will only apply when opening a text document. (when a workbench loads)
