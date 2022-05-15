@@ -27,11 +27,6 @@
         "label": "Aesthetics Original",
         "uiTheme": "vs-dark",
         "path": "./themes/Original.json"
-      },
-      {
-        "label": "Aesthetics Cold",
-        "uiTheme": "vs-dark",
-        "path": "./themes/Cold.json"
       }
     ],
     "commands": [
