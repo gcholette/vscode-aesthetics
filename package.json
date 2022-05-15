@@ -1,120 +1,134 @@
 {
-	"name": "vscode-aesthetics",
-	"displayName": "Aesthetics",
-	"description": "Customise beyond themes.",
-	"version": "0.3.0",
-	"author": "Gabriel Cholette-Rioux",
-	"publisher": "gcholette",
-	"icon": "logo.png",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/gcholette/vscode-aesthetics"
-	},
-	"engines": {
-		"vscode": "^1.62.0"
-	},
-	"categories": [
-		"Themes"
-	],
-	"activationEvents": [
-		"onCommand:vscode-aesthetics.applyDefaults",
-		"onCommand:vscode-aesthetics.applyTheme1",
-		"onCommand:vscode-aesthetics.applyCustom",
-		"onCommand:vscode-aesthetics.uninstall"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"themes": [
-			{
-				"label": "Aesthetics #1",
-				"uiTheme": "vs-dark",
-				"path": "./themes/Aesthetics-1.json"
-			}
-		],
-		"commands": [
-			{
-				"command": "vscode-aesthetics.applyDefaults",
-				"title": "Aesthetics: Apply defaults"
-			},
-			{
-				"command": "vscode-aesthetics.applyTheme1",
-				"title": "Aesthetics: Apply Theme #1"
-			},
-			{
-				"command": "vscode-aesthetics.applyCustom",
-				"title": "Aesthetics: Apply custom CSS"
-			},
-			{
-				"command": "vscode-aesthetics.uninstall",
-				"title": "Aesthetics: Uninstall/Remove Theme"
-			}
-		],
-		"configuration": {
-			"title": "Aesthetics",
-			"properties": {
-				"vscode-aesthetics.enableGlow": {
-					"type": "boolean",
-					"default": true,
-					"description": "Define if the text glass/glow effect is on."
-				},
-				"vscode-aesthetics.enableWallpaper": {
-					"type": "boolean",
-					"default": true,
-					"description": "Define if the wallpaper is displayed."
-				},
-				"vscode-aesthetics.wallpaperUrl": {
-					"type": "string",
-					"default": "",
-					"description": "Set the wallpaper URL."
-				},
-				"vscode-aesthetics.wallpaperBlurAmnt": {
-					"type": "number",
-					"default": 0,
-					"description": "Set how blurry the wallpaper is. (0 - 10)"
-				},
-				"vscode-aesthetics.wallpaperOpacityAmnt": {
-					"type": "number",
-					"default": 0,
-					"description": "Set how opaque the wallpaper is. (0.0 - 0.8)"
-				},
-				"vscode-aesthetics.customCssFile": {
-					"type": "string",
-					"default": "",
-					"description": "Set the full absolute path for the custom CSS file."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./ && npm run copy-files",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js",
-		"package": "vsce package",
-		"copy-files": "copyfiles -u 1 src/**/*.css out/"
-	},
-	"dependencies": {
-		"css": "^3.0.0"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.4",
-		"@types/mocha": "^9.0.0",
-		"@types/node": "14.x",
-		"@types/vscode": "^1.62.0",
-		"@typescript-eslint/eslint-plugin": "^5.1.0",
-		"@typescript-eslint/parser": "^5.1.0",
-		"@vscode/test-electron": "^1.6.2",
-		"copyfiles": "^2.4.1",
-		"eslint": "^8.1.0",
-		"glob": "^7.1.7",
-		"mocha": "^9.1.3",
-		"typescript": "^4.4.4",
-		"vsce": "^2.5.0"
-	},
-	"prettier": {
-		"semi": false,
-		"singleQuote": true
-	}
+  "name": "vscode-aesthetics",
+  "displayName": "Aesthetics",
+  "description": "Customise beyond themes.",
+  "version": "0.4.0",
+  "author": "Gabriel Cholette-Rioux",
+  "publisher": "gcholette",
+  "icon": "logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gcholette/vscode-aesthetics"
+  },
+  "engines": {
+    "vscode": "^1.62.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "activationEvents": [
+    "onCommand:vscode-aesthetics.apply",
+    "onCommand:vscode-aesthetics.remove"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "themes": [
+      {
+        "label": "Aesthetics Original",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Original.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "vscode-aesthetics.apply",
+        "title": "Aesthetics: Apply"
+      },
+      {
+        "command": "vscode-aesthetics.remove",
+        "title": "Aesthetics: Remove"
+      }
+    ],
+    "configuration": {
+      "title": "Aesthetics",
+      "properties": {
+        "vscode-aesthetics.enableGlow": {
+          "type": "boolean",
+          "default": true,
+          "description": "Define if the text glass/glow effect is on. \nRun command \"Aesthetics: Apply\" to take effect"
+        },
+        "vscode-aesthetics.enableWallpaper": {
+          "type": "boolean",
+          "default": true,
+          "description": "Define if the wallpaper is displayed. \nRun command \"Aesthetics: Apply\" to take effect"
+        },
+        "vscode-aesthetics.flavor": {
+          "type": "string",
+          "default": "Original",
+          "description": "Different colors and UI elements. \nRun command \"Aesthetics: Apply\" to take effect",
+          "enum": [
+            "Empty",
+            "Neon",
+            "Original",
+            "Sunset",
+            "Teal"
+          ],
+          "enumDescriptions": [
+            "Useful when using custom CSS",
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vscode-aesthetics.wallpaperUrl": {
+          "type": "string",
+          "default": "https://w.wallhaven.cc/full/28/wallhaven-28k71g.png",
+          "description": "Set the wallpaper URL. \nRun command \"Aesthetics: Apply\" to take effect"
+        },
+        "vscode-aesthetics.wallpaperBlurAmnt": {
+          "type": "number",
+          "default": 7,
+          "description": "Set how blurry the wallpaper is. (0 - 10) \nRun command \"Aesthetics: Apply\" to take effect"
+        },
+        "vscode-aesthetics.wallpaperOpacityAmnt": {
+          "type": "number",
+          "default": 0.14,
+          "description": "Set how opaque the wallpaper is. (0.0 - 0.8) \nRun command \"Aesthetics: Apply\" to take effect"
+        },
+        "vscode-aesthetics.enableCustomCss": {
+          "type": "boolean",
+          "default": false,
+          "description": "Define if your custom CSS file gets used."
+        },
+        "vscode-aesthetics.customCssFile": {
+          "type": "string",
+          "default": "",
+          "description": "Set the full absolute path for the custom CSS file. (Use if flavor Custom is selected) \nRun command \"Aesthetics: Apply\" to take effect"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && npm run copy-files",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "copy-files": "copyfiles -u 1 src/**/*.css out/"
+  },
+  "dependencies": {
+    "css": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.62.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "@vscode/test-electron": "^1.6.2",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.1.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.3",
+    "typescript": "^4.4.4",
+    "vsce": "^2.5.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  }
 }

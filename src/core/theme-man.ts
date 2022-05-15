@@ -55,6 +55,38 @@ function applyWallpaper(theme: string) {
     }
 }
 
+function applyBasicCSSApi(theme: string) {
+
+return `@keyframes breathingBackground {
+    0% {
+      background-position: 25% 75%;
+    }
+
+    50% {
+      background-position: 75% 25%;
+    }
+
+    100% {
+      background-position: 25% 75%;
+    }
+  }
+
+  @keyframes breathingBackground2 {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 50% 0%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  ${theme}`
+}
+
 export function generateTheme(theme: string): string {
-    return pipe(applyGlow, applyWallpaper)(theme)
+    return pipe(applyBasicCSSApi, applyGlow, applyWallpaper)(theme)
 }

@@ -1,0 +1,142 @@
+/* todo: abstract the color palette in the code instead of copying individual css files 
+   with basically the same code but different colors. */
+
+:root {
+  --color-1: rgb(107, 84, 236);
+  --color-2: rgb(62, 152, 255);
+  --color-3: rgb(48, 219, 224);
+}
+
+.monaco-workbench
+  .part.editor
+  > .content
+  .editor-group-container
+  > .title
+  .tabs-container
+  > .tab.sizing-fit.active::after {
+  background: linear-gradient(
+    90deg,
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3)
+  );
+  background-size: 2000% 2000%;
+  animation: breathingBackground infinite 75s steps(1220);
+  opacity: 1;
+  content: '';
+  z-index: 10;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 4px;
+}
+
+.statusbar::after {
+  content: '';
+  background: linear-gradient(
+    90deg,
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3)
+  );
+  background-size: 2000% 2000%;
+  animation: breathingBackground2 infinite 60s steps(1220);
+  width: calc(100% + 100px);
+  height: 2px !important;
+  right: -3px;
+  position: absolute;
+}
+
+.monaco-workbench
+  .activitybar
+  > .content
+  .monaco-action-bar
+  .badge
+  .badge-content {
+  color: black !important;
+  background: linear-gradient(
+    45deg,
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3),
+    var(--color-1),
+    var(--color-2),
+    var(--color-3)
+  );
+  background-size: 2000% 2000%;
+  animation: breathingBackground2 infinite 60s steps(1220);
+}
+
+.monaco-grid-branch-node
+  > .monaco-split-view2
+  > .sash-container
+  > .monaco-sash.vertical::after {
+  content: '';
+  /* background: linear-gradient(0deg, transparent, #9d00ff, transparent); */
+  bottom: 0px;
+  width: 1px;
+  height: calc(100%);
+  right: 0;
+  position: absolute;
+}

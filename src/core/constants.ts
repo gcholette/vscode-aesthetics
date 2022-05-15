@@ -1,4 +1,5 @@
 import path = require("path")
+import { Flavors } from "./types"
 import { formatPath } from "./util"
 
 const app_prefix = "[VS Code Aesthetics]"
@@ -15,17 +16,28 @@ export const msgs = {
 export const injectedTagName = "vscode-aesthetics-1"
 export const injectedFileName = "vscode-aesthetics.js"
 
-export const localInjectablePath = __dirname + formatPath("/injectable")
+export const localInjectablePath = __dirname + formatPath("/../injectable")
 export const themePath = localInjectablePath + formatPath("/themes")
 export const injectorPath = localInjectablePath + formatPath("/injectors")
-export const baseThemePath = themePath + formatPath("/base.css")
-export const theme1Path = themePath + formatPath("/theme1.css")
-export const retroGlowTheme = themePath + formatPath("/retro-glow.css")
+export const originalThemePath = themePath + formatPath("/original.css")
+export const tealThemePath = themePath + formatPath("/original-teal.css")
+export const sunsetThemePath = themePath + formatPath("/original-sunset.css")
+export const neonThemePath = themePath + formatPath("/original-neon.css")
+export const emptyThemePath = themePath + formatPath("/empty.css")
 export const cssInjectorPath = injectorPath + formatPath("/css-injector.js")
 export const appDirectory = path.dirname(require?.main?.filename || '')
 export const workbenchPath =
   appDirectory + formatPath("/vs/code/electron-browser/workbench/")
 export const workbenchHtml = workbenchPath + "workbench.html"
 export const scriptPath = workbenchPath + injectedFileName
+export const customScriptPath = workbenchPath + injectedFileName
 
-export const defaultWallpaperUrl = 'https://w.wallhaven.cc/full/4o/wallhaven-4opomm.jpg'
+export const defaultWallpaperUrl = 'https://w.wallhaven.cc/full/28/wallhaven-28k71g.png'
+
+export const flavorMapping = {
+  [Flavors.Original]: originalThemePath,
+  [Flavors.Sunset]: sunsetThemePath,
+  [Flavors.Neon]: neonThemePath,
+  [Flavors.Teal]: tealThemePath,
+  [Flavors.Empty]: emptyThemePath,
+}

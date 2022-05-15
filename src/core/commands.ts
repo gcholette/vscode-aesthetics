@@ -1,48 +1,36 @@
-import injectFile, { removeHtmlTag } from "./file-man"
-import { baseThemePath, msgs, theme1Path } from "./constants"
-import { errorToast, formatPath, reloadWindow, toast } from "./util"
-import config from "./config"
+import {
+  injectWithEffect,
+  removeHtmlTag,
+} from './file-man'
+import { errorToast, formatPath, reloadWindow } from './util'
+import config from './config'
+import {
+  flavorMapping
+} from './constants'
+import { Flavor } from './types'
 
-function injectWithEffect(path: string) {
-  return injectFile(path)
-    .then(() => {
-      reloadWindow()
-    })
-    .catch((e) => {
-      if (e.includes('EPERM')) {
-        errorToast("Unauthorized, VS Code needs to be run as admin to use Aesthetics.")
-      } else {
-        errorToast(e)
-      }
-    })
-}
-
-export function applyBase() {
-  return injectWithEffect(baseThemePath)
-}
-
-export function applyTheme1() {
-  return injectWithEffect(theme1Path)
-}
-
-export function applyCustom() {
+export function apply() {
+  const injectionFn = injectWithEffect
   const customPath = formatPath(config.customCssFile())
+  const enableCustomCss = config.enableCustomCss()
   const fileIsDefined = customPath.length > 0
 
-  if (fileIsDefined && !customPath.includes(".css")) {
-    return errorToast(
-      'No file of type ".css" was provided. VS Code Aesthetics only supports pure CSS files.'
-    )
+  if (enableCustomCss) {
+    if (fileIsDefined && !customPath.includes('.css')) {
+      return errorToast(
+        'No file of type ".css" was provided. VS Code Aesthetics only supports pure CSS files.'
+      )
+    } else if (!fileIsDefined) {
+      return errorToast('No path for the CSS file provided in settings.')
+    }
   }
 
-  if (customPath.length > 0) {
-    return injectWithEffect(customPath)
-  } else {
-    return errorToast("No path provided in settings.")
-  }
+  const flavor: Flavor = config.flavor() as Flavor
+
+  return injectionFn(flavorMapping[flavor])
 }
 
-export function uninstallTheme() {
+export function remove() {
   removeHtmlTag()
   reloadWindow()
 }

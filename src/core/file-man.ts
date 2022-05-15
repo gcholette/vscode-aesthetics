@@ -1,17 +1,18 @@
+import config from './config'
 import {
-  baseThemePath,
   cssInjectorPath,
   injectedFileName,
   injectedTagName,
-  msgs,
+  originalThemePath,
   scriptPath,
   workbenchHtml,
+  workbenchPath,
 } from './constants'
 import { generateTheme } from './theme-man'
+import { HtmlTag } from './types'
+import { errorToast, reloadWindow } from './util'
 const fs = require('fs')
 const css = require('css')
-
-type HtmlTag = string
 
 function addOrReplaceTag(fileContent: string, tag: HtmlTag) {
   const trimmedContent = fileContent
@@ -21,26 +22,40 @@ function addOrReplaceTag(fileContent: string, tag: HtmlTag) {
   return `${trimmedContent}${tag}\n</html>`
 }
 
-function generateHtmlTag(
+export function generateHtmlTag(
   filename: string = injectedFileName,
   name: string = injectedTagName
 ): HtmlTag {
   return `<!--${name}--><script src="${filename}"></script><!--${name}-->`
 }
 
-function buildFile(cssFilePath: string): void {
+
+export function validateCssFileContents(fileContent: string) {
+  try {
+    css.parse(fileContent)
+    return true
+  } catch (e) {
+    throw new Error(`[Invalid CSS] ${e}`)
+  }
+}
+
+function buildFile(cssFilePath: string, filename: string = 'vscode-aesthetics.js'): void {
   // upload file mentionned in tag inside workbench directory
   const cssInjectorFileContents = fs.readFileSync(cssInjectorPath, 'utf-8')
   const themeFileContents = fs.readFileSync(cssFilePath, 'utf-8')
+  const enableCustomCss = config.enableCustomCss()
+  const customFileContents = enableCustomCss ? fs.readFileSync(config.customCssFile(), 'utf-8') : ''
 
-  try {
-    css.parse(themeFileContents)
-  } catch (e) {
-    throw new Error(`${e}`)
+  // Merging of the custom css and official css flavors
+  const fileContents = themeFileContents + `\n${customFileContents}`
+
+  if (!validateCssFileContents(fileContents)) {
+    return
   }
-  const theme = generateTheme(themeFileContents)
+
+  const theme = generateTheme(fileContents)
   const consolidatedFileContents = `const customCssStr = \`${theme}\`;\n\n${cssInjectorFileContents}`
-  fs.writeFileSync(scriptPath, consolidatedFileContents, 'utf-8')
+  fs.writeFileSync(workbenchPath + filename, consolidatedFileContents, 'utf-8')
 }
 
 function insertHtmlTag(tag: HtmlTag): void {
@@ -59,13 +74,22 @@ export function removeHtmlTag(): void {
   fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
 }
 
-export default function injectFile(
-  cssFilePath: string = baseThemePath
+export function injectFile(
+  cssFilePath: string = originalThemePath
 ): Promise<any> {
-  const tag = generateHtmlTag()
+
+  // delete old injection scrips (cache issues)
+  const dirs = fs.readdirSync(workbenchPath).filter((x: any) => x.includes('vscode-aesthetics'))
+  dirs.forEach((x: any) => {
+    removeHtmlTag()
+    fs.unlinkSync(workbenchPath + x)
+  })
+
+  const filename = `vscode-aesthetics-${Math.round(Math.random() * 100000)}.js`
+  const tag: HtmlTag = generateHtmlTag(filename)
 
   try {
-    buildFile(cssFilePath)
+    buildFile(cssFilePath, filename)
   } catch (e) {
     return Promise.reject('Error: Theme did not apply successfullly - ' + e)
   }
@@ -83,4 +107,20 @@ export default function injectFile(
   } else {
     return Promise.reject('Error: Theme was not applied successfully.')
   }
+}
+
+export function injectWithEffect(path: string) {
+  return injectFile(path)
+    .then(() => {
+      reloadWindow()
+    })
+    .catch((e) => {
+      if (e.includes('EPERM')) {
+        errorToast(
+          'Unauthorized, VS Code needs to be run as admin to use Aesthetics.'
+        )
+      } else {
+        errorToast(e)
+      }
+    })
 }
