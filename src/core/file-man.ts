@@ -81,14 +81,16 @@ export function removeHtmlTag(): void {
 
 export function givePermissionForMp4(): void {
   const workbenchHtmlContents = fs.readFileSync(workbenchHtml, 'utf-8')
-  const newFileContents = workbenchHtmlContents.replace( 'media-src \'self\'', 'media-src *' ).replace('frame-src \'self\'', 'frame-src *')
+  const newFileContents = workbenchHtmlContents.replace( 'media-src \'self\'', 'media-src *')
   fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
 }
 
 export function injectFile(
   cssFilePath: string = originalThemePath
 ): Promise<any> {
-  givePermissionForMp4()
+  if (config.wallpaperUrl().endsWith('.mp4')) {
+    givePermissionForMp4()
+  }
 
   // delete old injection scrips (cache issues)
   const dirs = fs.readdirSync(workbenchPath()).filter((x: any) => x.includes('vscode-aesthetics'))
