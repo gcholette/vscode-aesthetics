@@ -72,7 +72,7 @@ Uninstall with the command `Aesthetics: Remove`
 
 Once installed, VS Code will say that it's installation is corrupt.
 
-It's possible that the extension stops working with future VS Code updates.
+It's possible that the extension stops working with future VS Code updates. Aesthetics *0.5.0* release was developed on *1.71.2*
 
 Everytime VS Code updates it will overwrite the extension's applied custom CSS. You will need to re-apply Aesthetics after every update if you want to keep using it.
 
