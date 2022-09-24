@@ -1,4 +1,3 @@
-
 const injectStyles = (stylesStr) => {
   const updatedStyleTag = document.createElement('style');
   updatedStyleTag.innerText = stylesStr

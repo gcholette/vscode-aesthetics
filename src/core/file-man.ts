@@ -8,7 +8,7 @@ import {
   workbenchHtml,
   workbenchPath,
 } from './constants'
-import { generateTheme } from './theme-man'
+import { generateJS, generateTheme } from './theme-man'
 import { HtmlTag } from './types'
 import { errorToast, reloadWindow } from './util'
 const fs = require('fs')
@@ -54,8 +54,13 @@ function buildFile(cssFilePath: string, filename: string = 'vscode-aesthetics.js
   }
 
   const theme = generateTheme(fileContents)
-  const consolidatedFileContents = `const customCssStr = \`${theme}\`;\n\n${cssInjectorFileContents}`
-  fs.writeFileSync(workbenchPath + filename, consolidatedFileContents, 'utf-8')
+  const customJS = generateJS()
+  const consolidatedFileContents = `
+    const customCssStr = \`${theme}\`;
+    \n\n${customJS}
+    \n\n${cssInjectorFileContents}
+  `
+  fs.writeFileSync(workbenchPath() + filename, consolidatedFileContents, 'utf-8')
 }
 
 function insertHtmlTag(tag: HtmlTag): void {
@@ -74,15 +79,24 @@ export function removeHtmlTag(): void {
   fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
 }
 
+export function givePermissionForMp4(): void {
+  const workbenchHtmlContents = fs.readFileSync(workbenchHtml, 'utf-8')
+  const newFileContents = workbenchHtmlContents.replace( 'media-src \'self\'', 'media-src *')
+  fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
+}
+
 export function injectFile(
   cssFilePath: string = originalThemePath
 ): Promise<any> {
+  if (config.wallpaperUrl().endsWith('.mp4')) {
+    givePermissionForMp4()
+  }
 
   // delete old injection scrips (cache issues)
-  const dirs = fs.readdirSync(workbenchPath).filter((x: any) => x.includes('vscode-aesthetics'))
+  const dirs = fs.readdirSync(workbenchPath()).filter((x: any) => x.includes('vscode-aesthetics'))
   dirs.forEach((x: any) => {
     removeHtmlTag()
-    fs.unlinkSync(workbenchPath + x)
+    fs.unlinkSync(workbenchPath() + x)
   })
 
   const filename = `vscode-aesthetics-${Math.round(Math.random() * 100000)}.js`

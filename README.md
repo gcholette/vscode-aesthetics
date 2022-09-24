@@ -70,16 +70,16 @@ Uninstall with the command `Aesthetics: Remove`
 
 ## Note
 
-This project is still in early development. 
-
 Once installed, VS Code will say that it's installation is corrupt.
+
+It's possible that the extension stops working with future VS Code updates. Aesthetics *0.5.0* release was developed on *1.71.2*
 
 Everytime VS Code updates it will overwrite the extension's applied custom CSS. You will need to re-apply Aesthetics after every update if you want to keep using it.
 
 When updating the extension, it is preferable to uninstall the old versions of this extension before. Otherwise, because the updated extension commands have changed, all old commands will remain in vscode's command prompt even tough the new version may not contain them, leading to unexpected behaviors. From 0.4 forward, the api should remain the same.
 
 ### Security note
-This extension will modify the files in your vscode installation folder and corrupt your installation (for the best :unicorn:). You are free to audit the injection code in the Github repository, mainly in `src/core/file-man.ts`.
+This extension will modify the files in your vscode installation folder and corrupt your installation. You should audit the injection/extension code in the Github repository, mainly in `src/core/file-man.ts`.
 
 The file in `src/injectable/injectors` is for live CSS injection, it is the file that is executed at every vscode startup after running `Aesthetics: Apply`.
 
