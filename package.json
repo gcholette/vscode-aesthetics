@@ -2,7 +2,7 @@
   "name": "vscode-aesthetics",
   "displayName": "Aesthetics",
   "description": "Customise beyond themes.",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "Gabriel Cholette-Rioux",
   "publisher": "gcholette",
   "icon": "logo.png",
@@ -73,7 +73,7 @@
         },
         "vscode-aesthetics.wallpaperUrl": {
           "type": "string",
-          "default": "https://w.wallhaven.cc/full/28/wallhaven-28k71g.png",
+          "default": "https://gitlab.com/gcholette/public-files/-/raw/main/backgrounds/static/cp1.png",
           "description": "Set the wallpaper URL. \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.wallpaperBlurAmnt": {
@@ -100,6 +100,7 @@
     }
   },
   "scripts": {
+    "build": "npm run compile && npm run package",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./ && npm run copy-files",
     "watch": "tsc -watch -p ./",

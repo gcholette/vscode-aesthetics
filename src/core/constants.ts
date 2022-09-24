@@ -1,3 +1,4 @@
+import { existsSync } from "fs"
 import path = require("path")
 import { Flavors } from "./types"
 import { formatPath } from "./util"
@@ -26,13 +27,23 @@ export const neonThemePath = themePath + formatPath("/original-neon.css")
 export const emptyThemePath = themePath + formatPath("/empty.css")
 export const cssInjectorPath = injectorPath + formatPath("/css-injector.js")
 export const appDirectory = path.dirname(require?.main?.filename || '')
-export const workbenchPath =
-  appDirectory + formatPath("/vs/code/electron-browser/workbench/")
-export const workbenchHtml = workbenchPath + "workbench.html"
-export const scriptPath = workbenchPath + injectedFileName
-export const customScriptPath = workbenchPath + injectedFileName
 
-export const defaultWallpaperUrl = 'https://w.wallhaven.cc/full/28/wallhaven-28k71g.png'
+export const workbenchPath = () => {
+  const path1 = appDirectory + formatPath("/vs/code/electron-browser/workbench/")
+  const path2 = appDirectory + formatPath("/vs/code/electron-sandbox/workbench/")
+
+  if (existsSync(path + 'workbench.html')) {
+    return path1
+  } else {
+    return path2
+  }
+}
+
+export const workbenchHtml = workbenchPath() + "workbench.html"
+export const scriptPath = workbenchPath() + injectedFileName
+export const customScriptPath = workbenchPath() + injectedFileName
+
+export const defaultWallpaperUrl = 'https://gitlab.com/gcholette/public-files/-/raw/main/backgrounds/static/cp1.png'
 
 export const flavorMapping = {
   [Flavors.Original]: originalThemePath,

@@ -1,12 +1,7 @@
-import {
-  injectWithEffect,
-  removeHtmlTag,
-} from './file-man'
+import { injectWithEffect, removeHtmlTag } from './file-man'
 import { errorToast, formatPath, reloadWindow } from './util'
 import config from './config'
-import {
-  flavorMapping
-} from './constants'
+import { flavorMapping } from './constants'
 import { Flavor } from './types'
 
 export function apply() {
