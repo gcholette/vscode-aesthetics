@@ -94,7 +94,7 @@ return `@keyframes breathingBackground {
       background-position: 0% 50%;
     }
   }
-  .vid1 {
+  .video-background {
     object-fit: cover;
     width: 100vw;
     height: 100vh;
@@ -123,7 +123,7 @@ export function generateJS(): string {
       const videoUrl = '${wallpaperUrl}';
       const videoTag = document.createElement('video');
       videoTag.setAttribute('autoplay', true);
-      videoTag.setAttribute('class', 'vid1');
+      videoTag.setAttribute('class', 'video-background');
       videoTag.setAttribute('muted', true);
       videoTag.setAttribute('loop', true);
       videoTag.setAttribute('id', 'bdvid');
