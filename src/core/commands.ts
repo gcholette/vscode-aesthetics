@@ -1,10 +1,12 @@
-import { injectWithEffect, removeHtmlTag } from './file-man'
+import { injectWithEffect, removeHtmlTag, sanityCheck } from './file-man'
 import { errorToast, formatPath, reloadWindow } from './util'
 import config from './config'
 import { flavorMapping } from './constants'
 import { Flavor } from './types'
 
 export function apply() {
+  sanityCheck()
+
   const injectionFn = injectWithEffect
   const customPath = formatPath(config.customCssFile())
   const enableCustomCss = config.enableCustomCss()

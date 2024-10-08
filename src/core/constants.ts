@@ -1,4 +1,3 @@
-import { existsSync } from "fs"
 import path = require("path")
 import { Flavors } from "./types"
 import { formatPath } from "./util"
@@ -26,20 +25,11 @@ export const sunsetThemePath = themePath + formatPath("/original-sunset.css")
 export const neonThemePath = themePath + formatPath("/original-neon.css")
 export const emptyThemePath = themePath + formatPath("/empty.css")
 export const cssInjectorPath = injectorPath + formatPath("/css-injector.js")
-export const appDirectory = path.dirname(require?.main?.filename || '')
+export const appDirectory = path.dirname(process.execPath)
 
-export const workbenchPath = () => {
-  const path1 = appDirectory + formatPath("/vs/code/electron-browser/workbench/")
-  const path2 = appDirectory + formatPath("/vs/code/electron-sandbox/workbench/")
+export const workbenchPath = () => appDirectory + formatPath("/resources/app/out/vs/code/electron-sandbox/workbench/")
 
-  if (existsSync(path + 'workbench.html')) {
-    return path1
-  } else {
-    return path2
-  }
-}
-
-export const workbenchHtml = workbenchPath() + "workbench.html"
+export const workbenchHtml = workbenchPath() + "workbench.esm.html"
 export const scriptPath = workbenchPath() + injectedFileName
 export const customScriptPath = workbenchPath() + injectedFileName
 
