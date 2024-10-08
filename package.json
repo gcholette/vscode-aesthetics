@@ -2,7 +2,7 @@
   "name": "vscode-aesthetics",
   "displayName": "Aesthetics",
   "description": "Customise beyond themes.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": "Gabriel Cholette-Rioux",
   "publisher": "gcholette",
   "icon": "logo.png",
@@ -21,6 +21,17 @@
     "onCommand:vscode-aesthetics.remove"
   ],
   "main": "./out/extension.js",
+  "scripts": {
+    "build": "npm run compile && npm run package",
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && npm run copy-files",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "copy-files": "copyfiles -u 1 src/**/*.css out/"
+  },
   "contributes": {
     "themes": [
       {
@@ -98,17 +109,6 @@
         }
       }
     }
-  },
-  "scripts": {
-    "build": "npm run compile && npm run package",
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./ && npm run copy-files",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
-    "package": "vsce package",
-    "copy-files": "copyfiles -u 1 src/**/*.css out/"
   },
   "dependencies": {
     "css": "^3.0.0"

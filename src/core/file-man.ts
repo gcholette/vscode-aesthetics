@@ -1,10 +1,10 @@
 import config from './config'
 import {
+  appDirectory,
   cssInjectorPath,
   injectedFileName,
   injectedTagName,
   originalThemePath,
-  scriptPath,
   workbenchHtml,
   workbenchPath,
 } from './constants'
@@ -81,7 +81,7 @@ export function removeHtmlTag(): void {
 
 export function givePermissionForMp4(): void {
   const workbenchHtmlContents = fs.readFileSync(workbenchHtml, 'utf-8')
-  const newFileContents = workbenchHtmlContents.replace( 'media-src \'self\'', 'media-src *')
+  const newFileContents = workbenchHtmlContents.replace('media-src \'self\'', 'media-src *')
   fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
 }
 
@@ -137,4 +137,12 @@ export function injectWithEffect(path: string) {
         errorToast(e)
       }
     })
+}
+
+export function sanityCheck(): void {
+  if (!fs.existsSync(workbenchHtml)) {
+    console.error(`[trace] workbenchHtml: ${workbenchHtml}`)
+    console.error(`[trace] appDirectory ${appDirectory}`)
+    throw new Error('Could not find the workspace file to edit in the vscode installation. Aborting.')
+  }
 }
