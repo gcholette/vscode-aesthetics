@@ -6,6 +6,7 @@ import {
   injectedTagName,
   originalThemePath,
   workbenchHtml,
+  workbenchHtmlEsm,
   workbenchPath,
 } from './constants'
 import { generateJS, generateTheme } from './theme-man'
@@ -28,7 +29,6 @@ export function generateHtmlTag(
 ): HtmlTag {
   return `<!--${name}--><script src="${filename}"></script><!--${name}-->`
 }
-
 
 export function validateCssFileContents(fileContent: string) {
   try {
@@ -63,26 +63,34 @@ function buildFile(cssFilePath: string, filename: string = 'vscode-aesthetics.js
   fs.writeFileSync(workbenchPath() + filename, consolidatedFileContents, 'utf-8')
 }
 
+function selectWorkbenchHtml(): string {
+  const isEsm = fs.existsSync(workbenchHtmlEsm)
+  return isEsm ? workbenchHtmlEsm : workbenchHtml
+}
+
 function insertHtmlTag(tag: HtmlTag): void {
   // change the workbench html to contain <script>
-  const workbenchHtmlContents = fs.readFileSync(workbenchHtml, 'utf-8')
+  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const workbenchHtmlContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
   const newFileContents = addOrReplaceTag(workbenchHtmlContents, tag)
-  fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
+  fs.writeFileSync(selectedWorkbenchHtml, newFileContents, 'utf-8')
 }
 
 export function removeHtmlTag(): void {
-  const workbenchHtmlContents = fs.readFileSync(workbenchHtml, 'utf-8')
+  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const workbenchHtmlContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
   const newFileContents = workbenchHtmlContents.replace(
     /<!--.*vscode-aesthetics-1-->/,
     ''
   )
-  fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
+  fs.writeFileSync(selectedWorkbenchHtml, newFileContents, 'utf-8')
 }
 
 export function givePermissionForMp4(): void {
-  const workbenchHtmlContents = fs.readFileSync(workbenchHtml, 'utf-8')
+  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const workbenchHtmlContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
   const newFileContents = workbenchHtmlContents.replace('media-src \'self\'', 'media-src *')
-  fs.writeFileSync(workbenchHtml, newFileContents, 'utf-8')
+  fs.writeFileSync(selectedWorkbenchHtml, newFileContents, 'utf-8')
 }
 
 export function injectFile(
@@ -115,7 +123,8 @@ export function injectFile(
   }
 
   // check if tag was successfully applied to html
-  const postWorkbenchContents = fs.readFileSync(workbenchHtml, 'utf-8')
+  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const postWorkbenchContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
   if (postWorkbenchContents.includes(tag)) {
     return Promise.resolve()
   } else {
@@ -140,8 +149,9 @@ export function injectWithEffect(path: string) {
 }
 
 export function sanityCheck(): void {
-  if (!fs.existsSync(workbenchHtml)) {
-    console.error(`[trace] workbenchHtml: ${workbenchHtml}`)
+  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  if (!fs.existsSync(selectedWorkbenchHtml)) {
+    console.error(`[trace] workbenchHtml: ${selectedWorkbenchHtml}`)
     console.error(`[trace] appDirectory ${appDirectory}`)
     throw new Error('Could not find the workspace file to edit in the vscode installation. Aborting.')
   }

@@ -97,4 +97,5 @@ sudo chown -R <user> <vscode path>
 
 # example
 sudo chown -R kali /usr/share/code
+sudo chown -R $USER $(whereis code | awk '{print $3}')
 ```
