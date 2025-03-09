@@ -29,7 +29,8 @@ export const appDirectory = path.dirname(process.execPath)
 
 export const workbenchPath = () => appDirectory + formatPath("/resources/app/out/vs/code/electron-sandbox/workbench/")
 
-export const workbenchHtml = workbenchPath() + "workbench.esm.html"
+export const workbenchHtmlEsm = workbenchPath() + "workbench.esm.html"
+export const workbenchHtml = workbenchPath() + "workbench.html"
 export const scriptPath = workbenchPath() + injectedFileName
 export const customScriptPath = workbenchPath() + injectedFileName
 

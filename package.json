@@ -2,7 +2,7 @@
   "name": "vscode-aesthetics",
   "displayName": "Aesthetics",
   "description": "Customise beyond themes.",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": "Gabriel Cholette-Rioux",
   "publisher": "gcholette",
   "icon": "logo.png",
@@ -55,7 +55,7 @@
       "properties": {
         "vscode-aesthetics.enableGlow": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Define if the text glass/glow effect is on. \nRun command \"Aesthetics: Apply\" to take effect"
         },
         "vscode-aesthetics.enableWallpaper": {

@@ -1,21 +1,19 @@
 const injectStyles = (stylesStr) => {
-  const updatedStyleTag = document.createElement('style');
-  updatedStyleTag.innerText = stylesStr
-  document.body.appendChild(updatedStyleTag)
-}
+  const stylesheetId = 'vscode-aesthetics-styles'
+  const insertCss = () => {
+    const updatedStyleTag = document.createElement('style');
+    updatedStyleTag.id = stylesheetId
+    updatedStyleTag.innerText = stylesStr
+    document.body.appendChild(updatedStyleTag)
+  }
 
-const observeEditorLoading = (mutations) => {
-  mutations.forEach(x => {
-    const element = document.querySelector('.monaco-workbench')
-    if (element) {
-      injectStyles(customCssStr)
+  setTimeout(() => {
+    // validate that it is inserted in the dom
+    if (!document.getElementById(stylesheetId)) {
+      insertCss()
     }
-  })
+  }, 3000)
+  insertCss()
 }
 
-const init = () => {
-  const loadingObs = new MutationObserver(observeEditorLoading);
-  loadingObs.observe(document.querySelector('body'), { attributes: true });
-}
-
-(() => init())()
+(() => injectStyles(customCssStr))()
