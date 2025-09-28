@@ -5,15 +5,40 @@ import {
   injectedFileName,
   injectedTagName,
   originalThemePath,
-  workbenchHtml,
-  workbenchHtmlEsm,
-  workbenchPath,
 } from './constants'
 import { generateJS, generateTheme } from './theme-man'
 import { HtmlTag } from './types'
-import { errorToast, reloadWindow } from './util'
-const fs = require('fs')
-const css = require('css')
+import { errorToast, formatPath, reloadWindow } from './util'
+import * as fs from 'node:fs'
+import * as css from 'css'
+
+export const workbenchPaths = (() => {
+  let paths: {
+    folder: string
+    file: string
+  } | null = null
+
+  return () => {
+    if (paths) return paths
+
+    const folder = [
+      "/resources/app/out/vs/code/electron-browser/workbench/",
+      "/resources/app/out/vs/code/electron-sandbox/workbench/"
+    ].map(x => appDirectory + formatPath(x)).find(fs.existsSync);
+
+    if (!folder) throw new Error('Could not find the appropriate workspace folder to edit in the vscode installation. Aborting.')
+
+    const file = [
+      "workbench.html",
+      "workbench.esm.html"
+    ].map(x => folder + x).find(fs.existsSync)
+
+    if (!file) throw new Error('Could not find the appropriate workspace html file to edit in the vscode installation. Aborting.')
+
+    paths = { folder, file }
+    return paths
+  }
+})()
 
 function addOrReplaceTag(fileContent: string, tag: HtmlTag) {
   const trimmedContent = fileContent
@@ -60,24 +85,19 @@ function buildFile(cssFilePath: string, filename: string = 'vscode-aesthetics.js
     \n\n${customJS}
     \n\n${cssInjectorFileContents}
   `
-  fs.writeFileSync(workbenchPath() + filename, consolidatedFileContents, 'utf-8')
-}
-
-function selectWorkbenchHtml(): string {
-  const isEsm = fs.existsSync(workbenchHtmlEsm)
-  return isEsm ? workbenchHtmlEsm : workbenchHtml
+  fs.writeFileSync(workbenchPaths().folder + filename, consolidatedFileContents, 'utf-8')
 }
 
 function insertHtmlTag(tag: HtmlTag): void {
   // change the workbench html to contain <script>
-  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const selectedWorkbenchHtml = workbenchPaths().file
   const workbenchHtmlContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
   const newFileContents = addOrReplaceTag(workbenchHtmlContents, tag)
   fs.writeFileSync(selectedWorkbenchHtml, newFileContents, 'utf-8')
 }
 
 export function removeHtmlTag(): void {
-  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const selectedWorkbenchHtml = workbenchPaths().file
   const workbenchHtmlContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
   const newFileContents = workbenchHtmlContents.replace(
     /<!--.*vscode-aesthetics-1-->/,
@@ -87,7 +107,7 @@ export function removeHtmlTag(): void {
 }
 
 export function givePermissionForMp4(): void {
-  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const selectedWorkbenchHtml = workbenchPaths().file
   const workbenchHtmlContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
   const newFileContents = workbenchHtmlContents.replace('media-src \'self\'', 'media-src *')
   fs.writeFileSync(selectedWorkbenchHtml, newFileContents, 'utf-8')
@@ -101,10 +121,10 @@ export function injectFile(
   }
 
   // delete old injection scrips (cache issues)
-  const dirs = fs.readdirSync(workbenchPath()).filter((x: any) => x.includes('vscode-aesthetics'))
+  const dirs = fs.readdirSync(workbenchPaths().folder).filter((x: any) => x.includes('vscode-aesthetics'))
   dirs.forEach((x: any) => {
     removeHtmlTag()
-    fs.unlinkSync(workbenchPath() + x)
+    fs.unlinkSync(workbenchPaths().folder + x)
   })
 
   const filename = `vscode-aesthetics-${Math.round(Math.random() * 100000)}.js`
@@ -123,8 +143,7 @@ export function injectFile(
   }
 
   // check if tag was successfully applied to html
-  const selectedWorkbenchHtml = selectWorkbenchHtml()
-  const postWorkbenchContents = fs.readFileSync(selectedWorkbenchHtml, 'utf-8')
+  const postWorkbenchContents = fs.readFileSync(workbenchPaths().file, 'utf-8')
   if (postWorkbenchContents.includes(tag)) {
     return Promise.resolve()
   } else {
@@ -149,7 +168,7 @@ export function injectWithEffect(path: string) {
 }
 
 export function sanityCheck(): void {
-  const selectedWorkbenchHtml = selectWorkbenchHtml()
+  const selectedWorkbenchHtml = workbenchPaths().file
   if (!fs.existsSync(selectedWorkbenchHtml)) {
     console.error(`[trace] workbenchHtml: ${selectedWorkbenchHtml}`)
     console.error(`[trace] appDirectory ${appDirectory}`)

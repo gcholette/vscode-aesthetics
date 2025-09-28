@@ -5,7 +5,7 @@ import { formatPath } from "./util"
 const app_prefix = "[VS Code Aesthetics]"
 
 export const msgs = {
-  enable_base:  `${app_prefix} Base Theme Applied.`,
+  enable_base: `${app_prefix} Base Theme Applied.`,
   success_inject: `${app_prefix} Success, window will reload to take effect.`,
   success_uninstall: `${app_prefix} Theme uninstalled, window will reload to take effect.`,
   error_inject: `${app_prefix} An error occured, could not add files.`,
@@ -26,13 +26,6 @@ export const neonThemePath = themePath + formatPath("/original-neon.css")
 export const emptyThemePath = themePath + formatPath("/empty.css")
 export const cssInjectorPath = injectorPath + formatPath("/css-injector.js")
 export const appDirectory = path.dirname(process.execPath)
-
-export const workbenchPath = () => appDirectory + formatPath("/resources/app/out/vs/code/electron-sandbox/workbench/")
-
-export const workbenchHtmlEsm = workbenchPath() + "workbench.esm.html"
-export const workbenchHtml = workbenchPath() + "workbench.html"
-export const scriptPath = workbenchPath() + injectedFileName
-export const customScriptPath = workbenchPath() + injectedFileName
 
 export const defaultWallpaperUrl = 'https://gitlab.com/gcholette/public-files/-/raw/main/backgrounds/static/cp1.png'
 
