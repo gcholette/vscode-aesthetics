@@ -11,6 +11,7 @@ import { HtmlTag } from './types'
 import { errorToast, formatPath, reloadWindow } from './util'
 import * as fs from 'node:fs'
 import * as css from 'css'
+import * as path from 'node:path'
 
 export const workbenchPaths = (() => {
   let paths: {
@@ -21,10 +22,31 @@ export const workbenchPaths = (() => {
   return () => {
     if (paths) return paths
 
-    const folder = [
+    const workbenchSubpaths = [
       "/resources/app/out/vs/code/electron-browser/workbench/",
       "/resources/app/out/vs/code/electron-sandbox/workbench/"
-    ].map(x => appDirectory + formatPath(x)).find(fs.existsSync);
+    ]
+
+    let folder = workbenchSubpaths
+      .map(x => appDirectory + formatPath(x))
+      .find(fs.existsSync)
+
+    if (!folder) {
+      const hashDirs = fs.readdirSync(appDirectory, { withFileTypes: true })
+        .filter(d => d.isDirectory() && /^[a-f0-9]{6,}$/.test(d.name))
+        .sort((a, b) =>
+          fs.statSync(path.join(appDirectory, b.name)).mtimeMs -
+          fs.statSync(path.join(appDirectory, a.name)).mtimeMs
+        )
+
+      for (const dir of hashDirs) {
+        const base = path.join(appDirectory, dir.name)
+        folder = workbenchSubpaths
+          .map(x => base + formatPath(x))
+          .find(fs.existsSync)
+        if (folder) break
+      }
+    }
 
     if (!folder) throw new Error('Could not find the appropriate workspace folder to edit in the vscode installation. Aborting.')
 
